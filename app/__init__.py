@@ -1,5 +1,6 @@
 from flask import Flask
 from .models import db
+from .extensions import ma
 
 def create_app(config_name):
      # Initialize flask app
@@ -9,5 +10,6 @@ def create_app(config_name):
 
     # initialize db into flask app
     db.init_app(app)
+    ma.init_app(app)
 
     return app
