@@ -2,6 +2,7 @@ from flask import Flask
 from .models import db
 from .extensions import ma
 from .blueprints.users import users_bp
+from .blueprints.book_descriptions import book_descriptions_bp
 
 def create_app(config_name):
      # Initialize flask app
@@ -16,6 +17,7 @@ def create_app(config_name):
 
      # Register Blueprints
      app.register_blueprint(users_bp,url_prefix='/users')
+     app.register_blueprint(book_descriptions_bp, url_prefix='/book_descriptions')
 
 
      return app

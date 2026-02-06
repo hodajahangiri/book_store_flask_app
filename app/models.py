@@ -161,13 +161,15 @@ class Book_descriptions(Base):
     author : Mapped[str] = mapped_column(String(200), nullable=False)
     publisher : Mapped[str] = mapped_column(String(200), nullable=False)
     published_date : Mapped[date] = mapped_column(Date)
-    description : Mapped[str] = mapped_column(String(1500), nullable=False)
+    description : Mapped[str] = mapped_column(String(3500), nullable=False)
     isbn : Mapped[str] = mapped_column(String(15), nullable=False, unique=True)
-    page_count : Mapped[int] = mapped_column(Integer, nullable=False)
+    page_count : Mapped[int] = mapped_column(Integer)
     image_link : Mapped[str] = mapped_column(String(900), nullable=False)
     language : Mapped[str] = mapped_column(String(9), nullable=False)
     price: Mapped[float] = mapped_column(Float,nullable=False, default=lambda: round(random.uniform(12.00, 52.00), 2))
     stock_quantity : Mapped[int] = mapped_column(Integer, nullable=False, default=20)
+    averageRating : Mapped[float] = mapped_column(Float,nullable=False)
+    ratingsCount : Mapped[int] = mapped_column(Integer,nullable=False)
 
     # Relationship with favorites
     favorites : Mapped[list["Favorites"]] = relationship("Favorites", back_populates="book_description")

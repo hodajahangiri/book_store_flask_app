@@ -90,7 +90,7 @@ def update_user_profile():
         user_data = user_schema.load(request.json)
     except ValidationError as e:
         return jsonify({"error message" : e.messages}), 400
-    # Check the email Mechanic wants to update not be taken with another mechanic
+    # Check the email User wants to update not be taken with another mechanic
     existing_email = db.session.query(Users).where(Users.email == user_data["email"], Users.id != user_id).first()
     if existing_email:
         return jsonify({"error" : f"{user_data["email"]} is already taken with another mechanic."}), 400
