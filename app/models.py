@@ -34,7 +34,7 @@ class Users(Base):
     id : Mapped[int] = mapped_column(primary_key=True)
     first_name : Mapped[str] = mapped_column(String(150), nullable=False)
     last_name : Mapped[str] = mapped_column(String(250), nullable=False)
-    email : Mapped[str] = mapped_column(String(500), nullable=False)
+    email : Mapped[str] = mapped_column(String(500), nullable=False, unique=True)
     password : Mapped[str] = mapped_column(String(200), nullable=False)
     phone : Mapped[str] = mapped_column(String(50),nullable=False)
     created_at : Mapped[datetime] = mapped_column(DateTime, default=datetime.now())
