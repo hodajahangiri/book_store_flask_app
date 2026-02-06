@@ -163,7 +163,7 @@ class Book_descriptions(Base):
     published_date : Mapped[date] = mapped_column(Date)
     description : Mapped[str] = mapped_column(String(3500), nullable=False)
     isbn : Mapped[str] = mapped_column(String(15), nullable=False, unique=True)
-    page_count : Mapped[int] = mapped_column(Integer)
+    page_count : Mapped[int] = mapped_column(Integer, nullable=True, default=0)
     image_link : Mapped[str] = mapped_column(String(900), nullable=False)
     language : Mapped[str] = mapped_column(String(9), nullable=False)
     price: Mapped[float] = mapped_column(Float,nullable=False, default=lambda: round(random.uniform(12.00, 52.00), 2))
