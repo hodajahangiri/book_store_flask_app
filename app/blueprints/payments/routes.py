@@ -35,6 +35,12 @@ def get_payments():
         return jsonify({"error" : f"User not found."}), 404
     return payments_schema.jsonify(user.payments), 200
 
+@payments_bp.route('/all')
+def get_all_payments():
+    payments = db.session.query(Payments).all()
+    return payments_schema.jsonify(payments), 200
+
+
 @payments_bp.route('<int:payment_id>', methods={'PUT'})
 @token_required
 def update_payment(payment_id):
