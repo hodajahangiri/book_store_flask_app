@@ -4,7 +4,6 @@ from app.utils.auth import token_required
 from flask import request, jsonify
 from marshmallow import ValidationError
 from app.models import db, Users, Reviews, Book_descriptions
-from .schemas import review_schema, reviews_schema
 from app.blueprints.book_descriptions.schemas import book_description_schema
 
 @reviews_bp.route('/<int:book_description_id>', methods={'POST'})

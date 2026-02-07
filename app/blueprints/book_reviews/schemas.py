@@ -1,7 +1,6 @@
 from app.models import Reviews
 from app.extensions import ma
 from app.blueprints.book_descriptions.schemas import BookDescriptionSchema
-from app.blueprints.users.schemas import UserSchema
 
 class ReviewSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -17,8 +16,3 @@ class UserReviewSchema(ma.SQLAlchemyAutoSchema):
 
 user_reviews_schema = UserReviewSchema(many=True)
 
-class BookReviewSchema(ma.SQLAlchemyAutoSchema):
-    user = ma.Nested(UserSchema)
-    class Meta:
-        model = Reviews
-boo_review_schema = BookReviewSchema()
