@@ -2,6 +2,7 @@ from app.blueprints.users import users_bp
 from .schemas import user_schema, user_credential_schema, users_schema
 from app.blueprints.addresses.schemas import addresses_schema
 from app.blueprints.payments.schemas import payments_schema
+from app.blueprints.book_reviews.schemas import user_reviews_schema
 from flask import request, jsonify
 from marshmallow import ValidationError
 from app.models import db, Users
@@ -101,5 +102,18 @@ def update_user_profile():
     response = {
         "message" : f"Successfully your profile updated.",
         "user_data" : user_schema.dump(user),
+        }
+    return jsonify(response), 200
+
+@users_bp.route('/reviews', methods=["GET"])
+@token_required
+def get_user_reviews():
+    user_id = request.user_id
+    user = db.session.get(Users, user_id)
+    if not user:
+        return jsonify({"error" : f"User not found."}), 404
+    response = {
+        "user" : user_schema.dump(user),
+        "user_reviews" : user_reviews_schema.dump(user.reviews)
         }
     return jsonify(response), 200

@@ -6,6 +6,7 @@ from .blueprints.book_descriptions import book_descriptions_bp
 from .blueprints.payments import payments_bp
 from .blueprints.addresses import addresses_bp
 from .blueprints.categories import categories_bp
+from .blueprints.book_reviews import reviews_bp
 
 def create_app(config_name):
      # Initialize flask app
@@ -24,5 +25,6 @@ def create_app(config_name):
      app.register_blueprint(payments_bp, url_prefix='/users/payments')
      app.register_blueprint(addresses_bp, url_prefix='/addresses')
      app.register_blueprint(categories_bp, url_prefix='/categories')
+     app.register_blueprint(reviews_bp, url_prefix='/reviews')
      
      return app

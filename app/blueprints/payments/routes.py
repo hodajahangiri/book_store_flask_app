@@ -51,6 +51,8 @@ def update_payment(payment_id):
         return jsonify({"error" : f"Payment not found."}), 404
     if not user:
         return jsonify({"error" : f"User not found."}), 404
+    if payment not in user.payments:
+        return jsonify({"error" : f"You can not update this payment method."}), 404
     try:
         payment_data = payment_schema.load(request.json)
     except ValidationError as e:
@@ -58,7 +60,6 @@ def update_payment(payment_id):
     # Check if payment exist or not.
     existed_payment = db.session.query(Payments).where((Payments.user_id == user_id) & (Payments.card_number == payment_data["card_number"]) & (Payments.id != payment_id)).first()
     if existed_payment:
-        print("existed_payment", existed_payment.card_number)
         return jsonify({"error" : f"{payment_data["card_number"]} is duplicated."}), 400
     payment_data["user_id"] = user_id
     for key, value in payment_data.items():
