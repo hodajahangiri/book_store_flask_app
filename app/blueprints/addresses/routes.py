@@ -120,12 +120,12 @@ def update_address(address_id):
 
 @addresses_bp.route('<int:address_id>', methods={'DELETE'})
 @token_required
-def delete_payment(address_id):
+def delete_address(address_id):
     user_id = request.user_id
     user = db.session.get(Users, user_id)
     address = db.session.get(Addresses, address_id)
     if not address:
-        return jsonify({"error" : f"Payment not found."}), 404
+        return jsonify({"error" : f"Address not found."}), 404
     if not user:
         return jsonify({"error" : f"User not found."}), 404
     if address in user.addresses:

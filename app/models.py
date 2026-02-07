@@ -69,7 +69,6 @@ class Addresses(Base):
     # Relationship with orders
     orders : Mapped[list["Orders"]] = relationship("Orders", back_populates="address")
 
-    
 class Payments(Base):
     __tablename__ = "payments"
 
