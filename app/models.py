@@ -16,7 +16,6 @@ db = SQLAlchemy(model_class=Base)
 user_addresses = Table(
     "user_addresses",
     Base.metadata,
-    Column("id", Integer, primary_key=True),
     Column("user_id", Integer, ForeignKey("users.id"), nullable=False),
     Column("address_id", Integer, ForeignKey("addresses.id"), nullable=False),
 )
