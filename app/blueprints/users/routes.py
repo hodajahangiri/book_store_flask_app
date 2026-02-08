@@ -5,6 +5,7 @@ from app.blueprints.payments.schemas import payments_schema
 from app.blueprints.book_reviews.schemas import user_reviews_schema
 from app.blueprints.favorites.schemas import user_favorites_schema
 from app.blueprints.orders.schemas import order_schema
+from app.blueprints.carts.schemas import cart_schema
 from app.blueprints.book_descriptions.schemas import book_description_schema
 from flask import request, jsonify
 from marshmallow import ValidationError
@@ -155,5 +156,32 @@ def get_user_orders():
                 }
                 for book in order.order_books
             ]} for order in user.orders ]
+    }
+    return jsonify(response), 200
+
+@users_bp.route('/carts', methods={'GET'})
+@token_required
+def get_user_cart():
+    user_id = int(request.user_id)
+    user = db.session.get(Users, user_id)
+    if not user:
+        return jsonify({"error": "User not found."}), 404
+    if not user.cart:
+         return jsonify({"message": "There is no cart for you."}), 200
+    if len(user.cart.cart_books) == 0:
+        return jsonify({"message": "Your cart is empty."}), 200
+    response = {
+        "user" : user_schema.dump(user),
+        "user_cart" :
+            {
+                "cart_info": cart_schema.dump(user.cart),
+                "cart_books": [
+                    {
+                        "book": book_description_schema.dump(book.book_description),
+                        "quantity": book.quantity
+                    }
+                    for book in user.cart.cart_books
+                ]
+            }
     }
     return jsonify(response), 200
