@@ -4,6 +4,8 @@ from app.blueprints.addresses.schemas import addresses_schema
 from app.blueprints.payments.schemas import payments_schema
 from app.blueprints.book_reviews.schemas import user_reviews_schema
 from app.blueprints.favorites.schemas import user_favorites_schema
+from app.blueprints.orders.schemas import order_schema
+from app.blueprints.book_descriptions.schemas import book_description_schema
 from flask import request, jsonify
 from marshmallow import ValidationError
 from app.models import db, Users
@@ -132,3 +134,26 @@ def get_user_favorites():
             "user_favorites" : user_favorites_schema.dump(user.favorites)
         }
 	return jsonify(response), 200
+
+@users_bp.route('/orders', methods={'GET'})
+@token_required
+def get_user_orders():
+    user_id = int(request.user_id)
+    user = db.session.get(Users, user_id)
+    if not user:
+        return jsonify({"error": "User not found."}), 404
+    
+    response = {
+        "user" : user_schema.dump(user),
+        "user_orders" : [
+            {
+            "order_info": order_schema.dump(order),
+            "order_books": [
+                {
+                    "book": book_description_schema.dump(book.book_description),
+                    "quantity": book.quantity
+                }
+                for book in order.order_books
+            ]} for order in user.orders ]
+    }
+    return jsonify(response), 200
