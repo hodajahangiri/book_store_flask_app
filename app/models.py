@@ -51,7 +51,6 @@ class Users(Base):
     # Relationship with favorites
     favorites : Mapped[list["Favorites"]] = relationship("Favorites", back_populates="user")
 
-
 class Addresses(Base):
     __tablename__ = "addresses"
 
@@ -109,7 +108,6 @@ class Orders(Base):
     # Relationship with order_books
     order_books : Mapped[list["Order_books"]] = relationship("Order_books", back_populates="order")
     
-    
 class Carts(Base):
     __tablename__ = "carts"
 
@@ -121,7 +119,6 @@ class Carts(Base):
     user : Mapped["Users"] = relationship("Users", back_populates="cart")
     # Relationship with cart_books
     cart_books : Mapped[list["Cart_books"]] = relationship("Cart_books", back_populates="cart") 
-
 
 class Reviews(Base):
     __tablename__ = "reviews"

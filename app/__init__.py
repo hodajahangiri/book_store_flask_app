@@ -8,6 +8,7 @@ from .blueprints.addresses import addresses_bp
 from .blueprints.categories import categories_bp
 from .blueprints.book_reviews import reviews_bp
 from .blueprints.favorites import favorites_bp
+from .blueprints.carts import carts_bp
 
 def create_app(config_name):
      # Initialize flask app
@@ -28,5 +29,6 @@ def create_app(config_name):
      app.register_blueprint(categories_bp, url_prefix='/categories')
      app.register_blueprint(reviews_bp, url_prefix='/reviews')
      app.register_blueprint(favorites_bp, url_prefix='/favorites')
+     app.register_blueprint(carts_bp, url_prefix='/carts')
      
      return app
