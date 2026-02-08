@@ -1,0 +1,1819 @@
+{
+  "info": {
+    "_postman_id": "1c7b46df-38e2-4028-9905-0d9135709e06",
+    "name": "BookStore API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6521684",
+    "_collection_link": "https://go.postman.co/collection/6521684-1c7b46df-38e2-4028-9905-0d9135709e06?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Google APIs",
+      "item": [
+        {
+          "name": "Get Book By Author",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://www.googleapis.com/books/v1/volumes?q=JKRolling+inauthor:keyes&key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
+              "protocol": "https",
+              "host": [
+                "www",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "books",
+                "v1",
+                "volumes"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "JKRolling+inauthor:keyes"
+                },
+                {
+                  "key": "key",
+                  "value": "AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get books by Filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://www.googleapis.com/books/v1/volumes?q=Adventures&filter=paid-ebooks&key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
+              "protocol": "https",
+              "host": [
+                "www",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "books",
+                "v1",
+                "volumes"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Adventures"
+                },
+                {
+                  "key": "filter",
+                  "value": "paid-ebooks"
+                },
+                {
+                  "key": "key",
+                  "value": "AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get book with ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
+              "protocol": "https",
+              "host": [
+                "www",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "books",
+                "v1",
+                "volumes",
+                "zyTCAlFPjgYC"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get books with title",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://www.googleapis.com/books/v1/volumes?q=Harry Potter Boxed Set+intitle:keyes&maxResults=20&orderBy=relevance&key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
+              "protocol": "https",
+              "host": [
+                "www",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "books",
+                "v1",
+                "volumes"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Harry Potter Boxed Set+intitle:keyes"
+                },
+                {
+                  "key": "maxResults",
+                  "value": "20"
+                },
+                {
+                  "key": "orderBy",
+                  "value": "relevance"
+                },
+                {
+                  "key": "key",
+                  "value": "AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"user1@email.com\",\n    \"first_name\" : \"user_name1\",\n    \"last_name\": \"user_last_name1\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"password\": \"12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/profile",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzAzNDAyMDEsImV4cCI6MTc3MDM0MzgwMSwic3ViIjoiMSJ9.r5EFOSf2hqohgOVczd8R_Zdzk_YlB17Pw4o-SkgfA7c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzAzNDAyMDEsImV4cCI6MTc3MDM0MzgwMSwic3ViIjoiMSJ9.r5EFOSf2hqohgOVczd8R_Zdzk_YlB17Pw4o-SkgfA7c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user reviews",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MTQ0MjUsImV4cCI6MTc3MDUxODAyNSwic3ViIjoiMSJ9.zvf2xgd40B6LvpDJTiYqsprQTUpbez6aBPnSv3-YR3M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/reviews",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user favorites",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MTU4OTYsImV4cCI6MTc3MDUxOTQ5Niwic3ViIjoiMSJ9.19n067iEVrA60kgdi4SCUm-wAl4FkAe611nZezgPGKw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/favorites",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "favorites"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjY0NDYsImV4cCI6MTc3MDUzMDA0Niwic3ViIjoiMSJ9.PIp6W0d10JQ-xXsKWl9ofOfPfLWdm8ceiLkvWglcjL4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/orders",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjY0NDYsImV4cCI6MTc3MDUzMDA0Niwic3ViIjoiMSJ9.PIp6W0d10JQ-xXsKWl9ofOfPfLWdm8ceiLkvWglcjL4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/carts",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "carts"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Book_Descriptions",
+      "item": [
+        {
+          "name": "Add Book",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\" : \"title1\",\n    \"subtitle\" : \"subtitle1\",\n    \"author\": \"author1\",\n    \"publisher\": \"publisher1\",\n    \"published_date\" : \"2005-11-15\",\n    \"description\": \"description1\",\n    \"isbn\": \"0000000001\",\n    \"image_link\": \"image_link1\",\n    \"language\": \"language1\",\n    \"averageRating\" : 0,\n    \"ratingsCount\" : 0,\n    \"page_count\" : 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Books",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\" : \"The Google Story (2018 Updated Edition)\",\n    \"subtitle\" : \"Inside the Hottest Business, Media, and Technology Success of Our Time\",\n    \"author\": \"David A. Vise\",\n    \"publisher\": \"Random House Publishing Group\",\n    \"published_date\" : \"2005-11-15\",\n    \"description\": \"<b> <b>The definitive, bestselling account of the company that changed the way we work and live, updated for the twentieth anniversary of Google’s founding with analysis of its most recent bold moves to redefine the world—and its even more ambitious plans for the future.</b><br></b><br>Moscow-born Sergey Brin and Midwest-born Larry Page dropped out of graduate school at Stanford University to, as they said, “change the world” through a powerful search engine that would organize every bit of information on the Web for free. <i>The Google Story</i> takes you deep inside the company’s wild ride from an idea that struggled for funding in 1998 to a firm that today rakes in billions in profits. Based on scrupulous research and extraordinary access to Google, this fast-moving narrative reveals how an unorthodox management style and a culture of innovation enabled a search-engine giant to shake up Madison Avenue, clash with governments that accuse it of being a monopoly, deploy self-driving cars to forever change how we travel, and launch high-flying Internet balloons. Unafraid of controversy, Google is surging ahead with artificial intelligence that could cure diseases but also displace millions of people from their jobs, testing the founders’ guiding mantra: DON’T BE EVIL.<br><b><br>Praise for <i>The Google Story<br></i></b><i><br></i>“[The authors] do a fine job of recounting Google’s rapid rise and explaining its search business.”<b>—<i>The New York Times<br></i></b><br>“An intriguing insider view of the Google culture.”<b>—<i>Harvard Business Review<br></i></b><br>“An interesting read on a powerhouse company . . . If you haven’t read anything about one of today’s most influential companies, you should. If you don’t read <i>The Google Story,</i> you’re missing a few extra treats.”<b>—<i>USA Today<br></i></b><br>“Fascinating . . . meticulous . . . never bogs down.”<b>—<i>Houston Chronicle</i></b>\",\n    \"isbn\": \"9780440335702\",\n    \"page_count\": 384,\n    \"image_link\": \"http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71Wy8UkMV9QNQSBm26kiP2wJMrp5elvy5Qdf-I5yIiZH8INOMMgnVBVhgAOeDDrn0AZbnVrxT_F83kK6nivL9xTvG5AYu1-9u92rB9r4jfS8gKRqOQulP9uJiXma1OCSAX31YLt&source=gbs_api\",\n    \"language\": \"en\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Book Info",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\" : \"The Google Story (2018 Updated Edition)\",\n    \"subtitle\" : \"Inside the Hottest Business, Media, and Technology Success of Our Time\",\n    \"author\": \"David A. Vise\",\n    \"publisher\": \"Random House Publishing Group\",\n    \"published_date\" : \"2005-11-15\",\n    \"description\": \"<b> <b>The definitive, bestselling account of the company that changed the way we work and live, updated for the twentieth anniversary of Google’s founding with analysis of its most recent bold moves to redefine the world—and its even more ambitious plans for the future.</b><br></b><br>Moscow-born Sergey Brin and Midwest-born Larry Page dropped out of graduate school at Stanford University to, as they said, “change the world” through a powerful search engine that would organize every bit of information on the Web for free. <i>The Google Story</i> takes you deep inside the company’s wild ride from an idea that struggled for funding in 1998 to a firm that today rakes in billions in profits. Based on scrupulous research and extraordinary access to Google, this fast-moving narrative reveals how an unorthodox management style and a culture of innovation enabled a search-engine giant to shake up Madison Avenue, clash with governments that accuse it of being a monopoly, deploy self-driving cars to forever change how we travel, and launch high-flying Internet balloons. Unafraid of controversy, Google is surging ahead with artificial intelligence that could cure diseases but also displace millions of people from their jobs, testing the founders’ guiding mantra: DON’T BE EVIL.<br><b><br>Praise for <i>The Google Story<br></i></b><i><br></i>“[The authors] do a fine job of recounting Google’s rapid rise and explaining its search business.”<b>—<i>The New York Times<br></i></b><br>“An intriguing insider view of the Google culture.”<b>—<i>Harvard Business Review<br></i></b><br>“An interesting read on a powerhouse company . . . If you haven’t read anything about one of today’s most influential companies, you should. If you don’t read <i>The Google Story,</i> you’re missing a few extra treats.”<b>—<i>USA Today<br></i></b><br>“Fascinating . . . meticulous . . . never bogs down.”<b>—<i>Houston Chronicle</i></b>\",\n    \"isbn\": \"9780440335702\",\n    \"page_count\": 384,\n    \"image_link\": \"http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71Wy8UkMV9QNQSBm26kiP2wJMrp5elvy5Qdf-I5yIiZH8INOMMgnVBVhgAOeDDrn0AZbnVrxT_F83kK6nivL9xTvG5AYu1-9u92rB9r4jfS8gKRqOQulP9uJiXma1OCSAX31YLt&source=gbs_api\",\n    \"language\": \"en\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a book",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\" : \"The Google Story (2018 Updated Edition)\",\n    \"subtitle\" : \"Inside the Hottest Business, Media, and Technology Success of Our Time\",\n    \"author\": \"David A. Vise\",\n    \"publisher\": \"Random House Publishing Group\",\n    \"published_date\" : \"2005-11-15\",\n    \"description\": \"Inside the Hottest Business, Media, and Technology Success of Our Time\",\n    \"isbn\": \"0440335701\",\n    \"image_link\": \"http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71Wy8UkMV9QNQSBm26kiP2wJMrp5elvy5Qdf-I5yIiZH8INOMMgnVBVhgAOeDDrn0AZbnVrxT_F83kK6nivL9xTvG5AYu1-9u92rB9r4jfS8gKRqOQulP9uJiXma1OCSAX31YLt&source=gbs_api\",\n    \"language\": \"en\",\n    \"averageRating\" : 4,\n    \"ratingsCount\" : 4,\n    \"page_count\" : 384\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a book",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add category to book",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzA0MjYsImV4cCI6MTc3MDQzNDAyNiwic3ViIjoiMSJ9.EvqNJ6W6kaP47xw0684-svLw8SmLc2wv2u1p-53EiO4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\" : \"Computers / Information Technology\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions/1/add_category/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions",
+                "1",
+                "add_category",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove category from book Copy",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/book_descriptions/1/remove_category/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "book_descriptions",
+                "1",
+                "remove_category",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create a Payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjE5NjMsImV4cCI6MTc3MDUyNTU2Mywic3ViIjoiMiJ9.ViZo_ZXljbbMDvh66KfHg2NJVq6J18hk2pNrdbONpxk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"card_number\" : \"3333-3333-3333-3333\",\n    \"cvv\" : 333,\n    \"expiry_month\": 3,\n    \"expiry_year\": 2033,\n    \"is_default\" : true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/payments",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user payments",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"card_number\" : \"1234-1234-1243-1234\",\n    \"cvv\" : 123,\n    \"expiry_month\": 9,\n    \"expiry_year\": 2026,\n    \"is_default\" : true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/payments",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All payments",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/payments/all",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "payments",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MDk5MTYsImV4cCI6MTc3MDQxMzUxNiwic3ViIjoiMSJ9.JLBE-2AzQ14904Wim4Pxk2-ipGlVABZpf0XnwBue3HQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"card_number\" : \"1234-1234-1234-1234\",\n    \"cvv\" : 123,\n    \"expiry_month\": 9,\n    \"expiry_year\": 2026,\n    \"is_default\" : true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/payments/4",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "payments",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MDk5MTYsImV4cCI6MTc3MDQxMzUxNiwic3ViIjoiMSJ9.JLBE-2AzQ14904Wim4Pxk2-ipGlVABZpf0XnwBue3HQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"card_number\" : \"1234-1234-1243-1234\",\n    \"cvv\" : 123,\n    \"expiry_month\": 9,\n    \"expiry_year\": 2026,\n    \"is_default\" : true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/users/payments/4",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "users",
+                "payments",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Addresses",
+      "item": [
+        {
+          "name": "Create an address",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjE5NjMsImV4cCI6MTc3MDUyNTU2Mywic3ViIjoiMiJ9.ViZo_ZXljbbMDvh66KfHg2NJVq6J18hk2pNrdbONpxk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"city\": \"city_3\",\n    \"country\": \"US\",\n    \"line1\": \"line1_3\",\n    \"line2\": \"\",\n    \"number\": 333,\n    \"state\": \"CA\",\n    \"zipcode\": \"333333\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/addresses",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user Addresses",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"line1\": \"125 Evans Ln\",\n    \"line2\": \"\",\n    \"number\": 2224,\n    \"city\": \"San Jose\",\n    \"state\": \"CA\",\n    \"country\": \"US\",\n    \"zipcode\": \"95125\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/addresses",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Addresses",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MjUyODQsImV4cCI6MTc3MDQyODg4NCwic3ViIjoiMiJ9.wTtmnMptxxbMnUaLrpQRsb6dVBKXB85XSMkqWz73poU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"line1\": \"125 Evans Ln\",\n    \"line2\": \"\",\n    \"number\": 2224,\n    \"city\": \"San Jose\",\n    \"state\": \"CA\",\n    \"country\": \"US\",\n    \"zipcode\": \"95125\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/addresses/all",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "addresses",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user address",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MjYxNjksImV4cCI6MTc3MDQyOTc2OSwic3ViIjoiMSJ9.g4PCQHykmhyID4YUV2dB69nTe4GP42vezTa7zZ6ZLPY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"city\": \"Scot Valley\",\n    \"country\": \"US\",\n    \"line1\": \"Sugar Pine\",\n    \"line2\": \"\",\n    \"number\": 786,\n    \"state\": \"CA\",\n    \"zipcode\": \"95965\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/addresses/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "addresses",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user address Copy",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzA0MjYsImV4cCI6MTc3MDQzNDAyNiwic3ViIjoiMSJ9.EvqNJ6W6kaP47xw0684-svLw8SmLc2wv2u1p-53EiO4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"city\": \"Scot Valley\",\n    \"country\": \"US\",\n    \"line1\": \"Sugar Pine\",\n    \"line2\": \"\",\n    \"number\": 786,\n    \"state\": \"CA\",\n    \"zipcode\": \"95965\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/addresses/7",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "addresses",
+                "7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Add Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\" : \"title2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/categories",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Categories",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzA0MjYsImV4cCI6MTc3MDQzNDAyNiwic3ViIjoiMSJ9.EvqNJ6W6kaP47xw0684-svLw8SmLc2wv2u1p-53EiO4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\" : \"Computers / Information Technology\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/categories",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzA0MjYsImV4cCI6MTc3MDQzNDAyNiwic3ViIjoiMSJ9.EvqNJ6W6kaP47xw0684-svLw8SmLc2wv2u1p-53EiO4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\" : \"Business & Economics / Entrepreneurship\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/categories/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "categories",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzA0MjYsImV4cCI6MTc3MDQzNDAyNiwic3ViIjoiMSJ9.EvqNJ6W6kaP47xw0684-svLw8SmLc2wv2u1p-53EiO4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\" : \"Computers / Information Technology\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/categories/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "categories",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Add review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rating\" : 2,\n    \"comment\" : \"comment_2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/reviews/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "reviews",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get reviews for book",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/reviews/book/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "reviews",
+                "book",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/reviews/all",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "reviews",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzU0ODEsImV4cCI6MTc3MDQzOTA4MSwic3ViIjoiMiJ9.g5-PNJQ2aXLeysGhhXH1wj-3EKhZs5UK3qSzxIdhxbg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rating\" : 5,\n    \"comment\" : \"I don't like the book subject\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/reviews/5",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "reviews",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzU0ODEsImV4cCI6MTc3MDQzOTA4MSwic3ViIjoiMiJ9.g5-PNJQ2aXLeysGhhXH1wj-3EKhZs5UK3qSzxIdhxbg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/reviews/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "reviews",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Add a book to favorites",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/favorites/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "favorites",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get book favorites",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0Mzk2NzMsImV4cCI6MTc3MDQ0MzI3Mywic3ViIjoiMiJ9.hh2OXQJHhPFs5J74M3v5vGsbduwT9yZOl4JArY9uz28",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/favorites/book/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "favorites",
+                "book",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove a book from favorites",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0NDExMTksImV4cCI6MTc3MDQ0NDcxOSwic3ViIjoiMiJ9.mRKx9p_QisIZcXRpT_UrLTpFEvwVqy2RB6zmaEKm9hs",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/favorites/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "favorites",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Carts",
+      "item": [
+        {
+          "name": "Get cart for user",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/carts",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "carts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add book to cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjY0NDYsImV4cCI6MTc3MDUzMDA0Niwic3ViIjoiMSJ9.PIp6W0d10JQ-xXsKWl9ofOfPfLWdm8ceiLkvWglcjL4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/carts/add_book/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "carts",
+                "add_book",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Book from cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/carts/remove_book/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "carts",
+                "remove_book",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create an order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"shipping_method\" : \"Delivered\",\n    \"subtotal\" : 0,\n    \"tax\" : 0,\n    \"shipping_cost\" : 0,\n    \"total\" : 0\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:5000/orders/1/address/3/payment/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "orders",
+                "1",
+                "address",
+                "3",
+                "payment",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete an order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/orders/4",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "orders",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjQxNjMsImV4cCI6MTc3MDUyNzc2Mywic3ViIjoiMSJ9.KpGCuUyA9urGJeU17rQwehlxw8Lb8_tKLZNa0P_6t0M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/orders",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
