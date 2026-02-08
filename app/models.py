@@ -93,7 +93,7 @@ class Orders(Base):
     address_id : Mapped[int] = mapped_column(Integer, ForeignKey("addresses.id"), nullable=False)
     created_at : Mapped[datetime] = mapped_column(DateTime, default=datetime.now())
     status : Mapped[str] = mapped_column(String(50),CheckConstraint("status IN ('Pending', 'Processing', 'Shipped', 'Cancelled', 'Returned')"), nullable=False, default="Pending")
-    shipping_method : Mapped[str] = mapped_column(String(50), CheckConstraint("shipping_method IN ('Out-for-Delivery','Delivered', 'Delayed', 'Returned')"))
+    shipping_method : Mapped[str] = mapped_column(String(50), CheckConstraint("shipping_method IN ('InStore', 'Out-for-Delivery','Delivered', 'Delayed', 'Returned')"),default='InStore')
     subtotal : Mapped[float] = mapped_column(Float, nullable=False, default=0)
     tax : Mapped[float] = mapped_column(Float, nullable=False, default=0)
     shipping_cost : Mapped[float] = mapped_column(Float, nullable=False, default=0)

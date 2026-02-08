@@ -5,24 +5,6 @@ from flask import request, jsonify
 from app.models import db,Users, Carts, Cart_books, Book_descriptions
 from app.blueprints.book_descriptions.schemas import book_description_schema
 
-
-
-# @carts_bp.route('',methods={'POST'})
-# @token_required
-# def create_cart():
-#     user_id = request.user_id
-#     user = db.session.get(Users, user_id)
-#     if not user:
-#         return jsonify({"error" : f"User not found."}), 404
-#     # check to not have user_id in Carts table
-#     existed_cart = db.session.query(Carts).where(Carts.user_id == user_id).first()
-#     if existed_cart:
-#         return cart_schema.jsonify(existed_cart), 200 
-#     new_cart = Carts(user_id=user_id)
-#     db.session.add(new_cart)
-#     db.session.commit()
-#     return cart_schema.jsonify(new_cart), 201
-
 @carts_bp.route('',methods={'GET'})
 @token_required
 def get_cart_books():
@@ -108,7 +90,6 @@ def remove_book_from_cart(book_description_id):
         existing_book.quantity -= 1
         db.session.commit()
         return ({"message" : "The book quantity decreased"}), 200
-    print("eeeeeeeeeeeexisting_book.quantityyyyyyyyyyyyyyyyyyyyyy", existing_book.quantity)
     cart.cart_books.remove(existing_book)
     db.session.delete(existing_book)
     db.session.commit()
