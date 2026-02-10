@@ -11,6 +11,13 @@ from .blueprints.favorites import favorites_bp
 from .blueprints.carts import carts_bp
 from .blueprints.orders import orders_bp
 from flask_cors import CORS
+from flask_swagger_ui import get_swaggerui_blueprint
+
+SWAGGER_URL = '/api/docs'
+API_URL = '/static/swagger.yaml'
+
+#creating swagger blueprint
+swagger_blueprint = get_swaggerui_blueprint(SWAGGER_URL,API_URL, config={'app_name': 'Mechanic Shop'})
 
 def create_app(config_name):
      # Initialize flask app
@@ -35,5 +42,6 @@ def create_app(config_name):
      app.register_blueprint(favorites_bp, url_prefix='/favorites')
      app.register_blueprint(carts_bp, url_prefix='/carts')
      app.register_blueprint(orders_bp, url_prefix='/orders')
+     app.register_blueprint(swagger_blueprint, url_prefix=SWAGGER_URL)
      
      return app
