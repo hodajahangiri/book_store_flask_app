@@ -10,6 +10,7 @@ from .blueprints.book_reviews import reviews_bp
 from .blueprints.favorites import favorites_bp
 from .blueprints.carts import carts_bp
 from .blueprints.orders import orders_bp
+from flask_cors import CORS
 
 def create_app(config_name):
      # Initialize flask app
@@ -21,6 +22,8 @@ def create_app(config_name):
      db.init_app(app)
      # Extensions     
      ma.init_app(app)
+     # Add CORS To let front access to the APIs
+     CORS(app)
 
      # Register Blueprints
      app.register_blueprint(users_bp,url_prefix='/users')
