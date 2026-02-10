@@ -1,0 +1,27 @@
+swagger: "2.0"
+info:
+  title: "Book Shop API"
+  description: "Used to manage the everyday functionalities of a Book Shop"
+  version: "0.0.1"
+
+host: "127.0.0.1:5000"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produce:
+  - "application/json"
+
+securityDefinitions: 
+  bearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+
+# API documentation
+paths:
+
+
+
+# Define Models for Input and Response
+definitions: 
