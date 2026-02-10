@@ -80,7 +80,9 @@ def delete_payment(payment_id):
     if payment in user.payments:
         print("payment in user.payments")
         user.payments.remove(payment)
-        db.session.delete(payment)
+        if len(payment.orders) == 0:
+            print("len(payment.orders) == 0")
+            db.session.delete(payment)
         db.session.commit()
         return jsonify({"message" : "Your card information successfully deleted from payments methods"}), 200
     else:

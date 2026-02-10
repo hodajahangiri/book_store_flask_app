@@ -132,7 +132,7 @@ def delete_address(address_id):
         user.addresses.remove(address)
         if user in address.users:
             address.users.remove(user)
-        if len(address.users) == 0:
+        if len(address.users) == 0 and len(address.orders) == 0:
             db.session.delete(address)
         db.session.commit()
         return jsonify({"message" : "Your address successfully deleted from address list"}), 200

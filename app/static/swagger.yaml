@@ -20,8 +20,1604 @@ securityDefinitions:
 
 # API documentation
 paths:
+# Users Path
+  /users:
+    post: # Register a user
+      tags:
+        - Users
+      summary: "Create a new user"
+      description: "Register a new user account. Returns user data and token."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User registration data"
+          required: true
+          schema:
+            $ref: "#/definitions/UserCreate"
+      responses:
+        201:
+          description: "User created successfully"
+          schema:
+            $ref: "#/definitions/UserCreateResponse"
+        400:
+          description: "Validation error or email already exists"
+          
+    get: # Get all users
+      tags:
+        - Users
+      summary: "Get all users"
+      description: "Retrieve a list of all users."
+      responses:
+        200:
+          description: "List of users"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+
+    put: #update Profile
+      tags:
+        - Users
+      summary: "Update user profile"
+      description: "Update the authenticated user's profile."
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User profile update data"
+          required: true
+          schema:
+            $ref: "#/definitions/UserUpdate"
+      responses:
+        200:
+          description: "Profile updated successfully"
+          schema:
+            $ref: "#/definitions/UserUpdateResponse"
+        400:
+          description: "Validation error or email already taken"
+        404:
+          description: "User not found"
+
+    delete: #Delete a user
+      tags:
+        - Users
+      summary: "Delete user account"
+      description: "Delete the authenticated user's account."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "Account deleted successfully"
+        404:
+          description: "User not found"
+
+  /users/login: #login user
+    post:
+      tags:
+        - Users
+      summary: "Login for user endpoint (generate token)"
+      description: "Validates user credentials (email and password), and generate a user unique token"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Login credentials"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginCredentials"
+      responses:
+        200:
+          description: "Login Successful"
+          schema:
+            $ref: "#/definitions/LoginResponse"
+          examples: 
+            application/json:
+              message: "Successfully logged in. Welcome User"
+              token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+              user_data: 
+                created_at: "0000-00-00T00:00:00.00"
+                email: "user@email.com"
+                first_name: "user_first_name"
+                id: 0
+                last_name: "user_last_name"
+                password: "<encrypted password>"
+                phone: "+10001112233"
+
+  /users/profile:
+    get:
+      tags:
+        - Users
+      summary: "Get user profile"
+      description: "Retrieve the authenticated user's profile, payments, and addresses."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "User profile data"
+          schema:
+            $ref: "#/definitions/UserProfileResponse"
+        404:
+          description: "User not found"
+
+  /users/reviews:
+    get:
+      tags:
+        - Users
+      summary: "Get user reviews"
+      description: "Retrieve all reviews for the authenticated user."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "User reviews"
+          schema:
+            $ref: "#/definitions/UserReviewsResponse"
+        404:
+          description: "User not found"
+
+  /users/favorites:
+    get:
+      tags:
+        - Users
+      summary: "Get user favorites"
+      description: "Retrieve all favorites for the authenticated user."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "User favorites"
+          schema:
+            $ref: "#/definitions/UserFavoritesResponse"
+        404:
+          description: "User not found"
+
+  /users/orders:
+    get:
+      tags:
+        - Users
+      summary: "Get user orders"
+      description: "Retrieve all orders for the authenticated user, including order books."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "User orders"
+          schema:
+            $ref: "#/definitions/UserOrdersResponse"
+        404:
+          description: "User not found"
+
+  /users/carts:
+    get:
+      tags:
+        - Users
+      summary: "Get user cart"
+      description: "Retrieve the authenticated user's cart and cart books."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "User cart"
+          schema:
+            $ref: "#/definitions/UserCartResponse"
+        404:
+          description: "User not found"
+
+# Books Paths
+  /book_descriptions:
+    post:
+      tags:
+        - BookDescriptions
+      summary: "Add a new book description"
+      description: "Create a new book description. ISBN must be unique."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Book description data"
+          required: true
+          schema:
+            $ref: "#/definitions/BookDescriptionCreate"
+      responses:
+        201:
+          description: "Book created successfully"
+          schema:
+            $ref: "#/definitions/BookDescription"
+        400:
+          description: "Validation error or ISBN already exists"
+
+    get:
+      tags:
+        - BookDescriptions
+      summary: "Get all book descriptions"
+      description: "Retrieve all book descriptions."
+      responses:
+        200:
+          description: "List of book descriptions"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/BookDescription"
+
+  /book_descriptions/{book_id}:
+    get:
+      tags:
+        - BookDescriptions
+      summary: "Get book description by ID"
+      description: "Retrieve a book description and its categories by ID."
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book description and categories"
+          schema:
+            $ref: "#/definitions/BookDescriptionWithCategories"
+        404:
+          description: "Book not found"
+    
+    put:
+      tags:
+        - BookDescriptions
+      summary: "Update book description"
+      description: "Update a book description by ID. ISBN must remain unique."
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Book description data"
+          required: true
+          schema:
+            $ref: "#/definitions/BookDescriptionCreate"
+      responses:
+        200:
+          description: "Book updated successfully"
+        400:
+          description: "Validation error or ISBN already exists"
+        404:
+          description: "Book not found"
+
+    delete:
+      tags:
+        - BookDescriptions
+      summary: "Delete book description"
+      description: "Delete a book description by ID."
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book deleted successfully"
+        404:
+          description: "Book not found"
+
+  /book_descriptions/{book_id}/add_category/{category_id}:
+    put:
+      tags:
+        - BookDescriptions
+      summary: "Add category to book"
+      description: "Add a category to a book description."
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          type: integer
+        - name: category_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Category added to book"
+        404:
+          description: "Book or category not found"
+
+  /book_descriptions/{book_id}/remove_category/{category_id}:
+    put:
+      tags:
+        - BookDescriptions
+      summary: "Remove category from book"
+      description: "Remove a category from a book description."
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          type: integer
+        - name: category_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Category removed from book"
+        404:
+          description: "Book or category not found"
+
+# Payments Paths 
+  /payments:
+    post: # Create a payment
+      tags:
+        - Payments
+      summary: "Create a payment method"
+      description: "Add a new payment method for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Payment data"
+          required: true
+          schema:
+            $ref: "#/definitions/PaymentCreate"
+      responses:
+        201:
+          description: "Payment created successfully"
+          schema:
+            $ref: "#/definitions/Payment"
+        400:
+          description: "Validation error or card already exists"
+        404:
+          description: "User not found"
+
+    get: # get user payments
+      tags:
+        - Payments
+      summary: "Get user payments"
+      description: "Retrieve all payment methods for the authenticated user."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "List of user payments"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Payment"
+        404:
+          description: "User not found"
+
+  /payments/all:
+    get: # get all payments
+      tags:
+        - Payments
+      summary: "Get all payments (admin)"
+      description: "Retrieve all payment methods (admin only)."
+      responses:
+        200:
+          description: "List of all payments"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Payment"
+
+  /payments/{payment_id}:
+    put: #update a payments
+      tags:
+        - Payments
+      summary: "Update payment method"
+      description: "Update a payment method for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: payment_id
+          in: path
+          required: true
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Payment data"
+          required: true
+          schema:
+            $ref: "#/definitions/PaymentCreate"
+      responses:
+        200:
+          description: "Payment updated successfully"
+        400:
+          description: "Validation error or card duplicated"
+        404:
+          description: "User or payment not found"
+
+    delete: #delete a payment
+      tags:
+        - Payments
+      summary: "Delete payment method"
+      description: "Delete a payment method for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: payment_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Payment deleted successfully"
+        404:
+          description: "User or payment not found"
+
+# Addresses Path
+  /addresses:
+    post:
+      tags:
+        - Addresses
+      summary: "Create an address"
+      description: "Add a new address for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Address data"
+          required: true
+          schema:
+            $ref: "#/definitions/AddressCreate"
+      responses:
+        201:
+          description: "Address added successfully"
+        400:
+          description: "Validation error or address already exists"
+        404:
+          description: "User not found"
+    get:
+      tags:
+        - Addresses
+      summary: "Get user addresses"
+      description: "Retrieve all addresses for the authenticated user."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "List of user addresses"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Address"
+        404:
+          description: "User not found"
+
+  /addresses/all:
+    get:
+      tags:
+        - Addresses
+      summary: "Get all addresses (admin)"
+      description: "Retrieve all addresses (admin only)."
+      responses:
+        200:
+          description: "List of all addresses"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Address"
+
+  /addresses/{address_id}:
+    put:
+      tags:
+        - Addresses
+      summary: "Update address"
+      description: "Update an address for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: address_id
+          in: path
+          required: true
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Address data"
+          required: true
+          schema:
+            $ref: "#/definitions/AddressCreate"
+      responses:
+        200:
+          description: "Address updated successfully"
+        400:
+          description: "Validation error or address already exists"
+        404:
+          description: "User or address not found"
+        500:
+          description: "Something went wrong"
+    delete:
+      tags:
+        - Addresses
+      summary: "Delete address"
+      description: "Delete an address for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: address_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Address deleted successfully"
+        404:
+          description: "User or address not found"
+
+# Categories Path
+  /categories:
+    post:
+      tags:
+        - Categories
+      summary: "Add a category"
+      description: "Create a new category. Title must be unique."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Category data"
+          required: true
+          schema:
+            $ref: "#/definitions/CategoryCreate"
+      responses:
+        201:
+          description: "Category created successfully"
+          schema:
+            $ref: "#/definitions/Category"
+        400:
+          description: "Validation error or title already exists"
+    get:
+      tags:
+        - Categories
+      summary: "Get all categories"
+      description: "Retrieve all categories."
+      responses:
+        200:
+          description: "List of categories"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Category"
+
+  /categories/{category_id}:
+    put:
+      tags:
+        - Categories
+      summary: "Update category"
+      description: "Update a category by ID. Title must remain unique."
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Category data"
+          required: true
+          schema:
+            $ref: "#/definitions/CategoryCreate"
+      responses:
+        200:
+          description: "Category updated successfully"
+        400:
+          description: "Validation error or title already exists"
+        404:
+          description: "Category not found"
+    delete:
+      tags:
+        - Categories
+      summary: "Delete category"
+      description: "Delete a category by ID."
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Category deleted successfully"
+        404:
+          description: "Category not found"
+
+# Reviews Paths
+  /reviews/{book_description_id}:
+    post:
+      tags:
+        - Reviews
+      summary: "Create a review for a book"
+      description: "Add a review for a book by the authenticated user. Each user can add only one review per book."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Review data"
+          required: true
+          schema:
+            $ref: "#/definitions/ReviewCreate"
+      responses:
+        201:
+          description: "Review created successfully"
+          schema:
+            $ref: "#/definitions/Review"
+        400:
+          description: "Validation error or review already exists"
+        404:
+          description: "User or book not found"
+
+  /reviews/book/{book_description_id}:
+    get:
+      tags:
+        - Reviews
+      summary: "Get reviews for a book"
+      description: "Retrieve all reviews for a specific book."
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book info and reviews"
+        404:
+          description: "Book not found"
+
+  /reviews/all:
+    get:
+      tags:
+        - Reviews
+      summary: "Get all reviews (admin)"
+      description: "Retrieve all reviews (admin only)."
+      responses:
+        200:
+          description: "List of all reviews"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Review"
+
+  /reviews/{review_id}:
+    put:
+      tags:
+        - Reviews
+      summary: "Update a review"
+      description: "Update a review by the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: review_id
+          in: path
+          required: true
+          type: integer
+        - in: "body"
+          name: "body"
+          description: "Review data"
+          required: true
+          schema:
+            $ref: "#/definitions/ReviewCreate"
+      responses:
+        200:
+          description: "Review updated successfully"
+        400:
+          description: "Validation error"
+        404:
+          description: "User or review not found"
+    delete:
+      tags:
+        - Reviews
+      summary: "Delete a review"
+      description: "Delete a review by the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: review_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Review deleted successfully"
+        404:
+          description: "User or review not found"
+
+# Favorites Path
+  /favorites/{book_description_id}:
+    post:
+      tags:
+        - Favorites
+      summary: "Add a book to favorites"
+      description: "Add a book to the authenticated user's favorites."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book added to favorites"
+        400:
+          description: "Book already in favorites"
+        404:
+          description: "User or book not found"
+    put:
+      tags:
+        - Favorites
+      summary: "Toggle favorite status"
+      description: "Toggle favorite status for a book (add or remove)."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book added or removed from favorites"
+        404:
+          description: "User or book not found"
+
+  /favorites/book/{book_description_id}:
+    get:
+      tags:
+        - Favorites
+      summary: "Get all favorites for a book"
+      description: "Retrieve all favorites for a specific book."
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book info and favorites"
+        404:
+          description: "Book not found"
+
+  /favorites/{favorite_id}:
+    delete:
+      tags:
+        - Favorites
+      summary: "Remove a book from favorites"
+      description: "Remove a book from the authenticated user's favorites."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: favorite_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book removed from favorites"
+        403:
+          description: "Forbidden: not user's favorite"
+        404:
+          description: "User or favorite not found"
+
+# Carts Paths
+  /carts:
+    get:
+      tags:
+        - Carts
+      summary: "Get user cart"
+      description: "Retrieve the authenticated user's cart and cart books."
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "User cart"
+          schema:
+            $ref: "#/definitions/UserCartResponse"
+        404:
+          description: "User not found"
+
+  /carts/add_book/{book_description_id}:
+    put:
+      tags:
+        - Carts
+      summary: "Add book to cart"
+      description: "Add a book to the authenticated user's cart."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book added to cart or quantity increased"
+        404:
+          description: "User or book not found"
+
+  /carts/remove_book/{book_description_id}:
+    put:
+      tags:
+        - Carts
+      summary: "Remove book from cart"
+      description: "Remove a book or decrease its quantity in the authenticated user's cart."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: book_description_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Book removed from cart or quantity decreased"
+        404:
+          description: "User, book, or cart not found"
+
+# Orders Paths
+  /orders/{cart_id}/address/{address_id}/payment/{payment_id}:
+    post:
+      tags:
+        - Orders
+      summary: "Create a new order from cart"
+      description: "Checkout a cart and create an order for the authenticated user. Requires valid cart, address, and payment IDs."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cart_id
+          in: path
+          required: true
+          type: integer
+        - name: address_id
+          in: path
+          required: true
+          type: integer
+        - name: payment_id
+          in: path
+          required: true
+          type: integer
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/OrderCreate'
+      responses:
+        201:
+          description: "Order created successfully"
+          schema:
+            $ref: '#/definitions/OrderDetail'
+        400:
+          description: "Validation error or resource does not belong to user"
+        404:
+          description: "User, cart, address, or payment not found"
+
+  /orders/{order_id}:
+    delete:
+      tags:
+        - Orders
+      summary: "Delete or cancel an order"
+      description: "Delete a pending order or cancel a processing order for the authenticated user."
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        200:
+          description: "Order deleted or cancelled successfully"
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Successfully, Your order deleted"
+        400:
+          description: "Order cannot be cancelled or does not belong to user"
+        404:
+          description: "User or order not found"
+
+  /orders:
+    get:
+      tags:
+        - Orders
+      summary: "Get all orders"
+      description: "Retrieve all orders in the system. (Admin or open endpoint)"
+      responses:
+        200:
+          description: "List of all orders"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OrderDetail'
 
 
 
 # Define Models for Input and Response
-definitions: 
+definitions:
+# User Definitions
+  LoginCredentials:
+    type: object
+    properties:
+      email:
+        type: string
+        example: "user@email.com"
+      password:
+        type: string
+        example: "12345"
+    required:
+      - email
+      - password
+
+  LoginResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: "Successfully logged in. Welcome user"
+      token:
+        type: string
+        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+      user_data:
+        $ref: '#/definitions/User'
+
+  UserCreate:
+    type: object
+    properties:
+      first_name:
+        type: string
+        example: "user_first_name1"
+      last_name:
+        type: string
+        example: "user_last_name1"
+      email:
+        type: string
+        example: "user1@email.com"
+      password:
+        type: string
+        example: "12345"
+      phone:
+        type: string
+        example: "+12345678900"
+    required:
+      - first_name
+      - last_name
+      - email
+      - password
+      - phone
+
+  UserCreateResponse:
+    type: object
+    properties:
+      user_data:
+        $ref: '#/definitions/User'
+      token:
+        type: string
+        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+
+  UserUpdate:
+    type: object
+    properties:
+      first_name:
+        type: string
+        example: "user_first_name_update"
+      last_name:
+        type: string
+        example: "user_last_name_update"
+      email:
+        type: string
+        example: "user_update@email.com"
+      password:
+        type: string
+        example: "12345"
+      phone:
+        type: string
+        example: "+1987654321"
+    required:
+      - first_name
+      - last_name
+      - email
+      - password
+      - phone
+
+  UserUpdateResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: "Successfully your profile updated."
+      user_data:
+        $ref: '#/definitions/User'
+
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 0
+      first_name:
+        type: string
+        example: "user_first_name"
+      last_name:
+        type: string
+        example: "user_last_name"
+      email:
+        type: string
+        example: "user@email.com"
+      phone:
+        type: string
+        example: "+12345678900"
+      created_at:
+        type: string
+        format: date-time
+        example: "2026-02-10T12:00:00"
+      password:
+        type: string
+        example: "<encrypted password>"
+
+  UserProfileResponse:
+    type: object
+    properties:
+      user_data:
+        $ref: '#/definitions/User'
+      user_payments:
+        type: array
+        items:
+          $ref: '#/definitions/Payment'
+      user_addresses:
+        type: array
+        items:
+          $ref: '#/definitions/Address'
+    example:
+      user_data:
+        id: 0
+        first_name: "user_first_name"
+        last_name: "user_last_name"
+        email: "user@email.com"
+        phone: "+12345678900"
+        created_at: "2026-02-10T12:00:00"
+      user_payments:
+        - id: 0
+          card_number: "**** **** **** 1234"
+          cvv: 123
+          expiry_month: 12
+          expiry_year: 2030
+          is_default: true
+      user_addresses:
+        - id: 0
+          line1: "123 Main St"
+          line2: "Apt 4B"
+          city: "New York"
+          state: "NY"
+          country: "USA"
+          zipcode: "10001"
+          number: 111
+
+  UserReviewsResponse:
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      user_reviews:
+        type: array
+        items:
+          $ref: '#/definitions/Review'
+    example:
+      user:
+        id: 0
+        first_name: "user_first_name"
+        last_name: "user_last_name"
+        email: "user@email.com"
+        phone: "+12345678900"
+        created_at: "2026-02-10T12:00:00"
+      user_reviews:
+        - id: 0
+          rating: 4.5
+          comment: "Great book!"
+          created_at: "2026-02-09T10:00:00"
+
+  UserFavoritesResponse:
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      user_favorites:
+        type: array
+        items:
+          $ref: '#/definitions/Favorite'
+    example:
+      user:
+        id: 0
+        first_name: "user_first_name"
+        last_name: "user_last_name"
+        email: "user@email.com"
+        phone: "+12345678900"
+        created_at: "2026-02-10T12:00:00"
+      user_favorites:
+        - id: 0
+          book_description:
+            id: 0
+            title: "Book Title"
+            author: "Author Name"
+
+  UserCartResponse:
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      user_cart:
+        $ref: '#/definitions/CartDetail'
+    example:
+      user:
+        id: 0
+        first_name: "user_first_name"
+        last_name: "user_last_name"
+        email: "user@email.com"
+        phone: "+12345678900"
+        created_at: "2026-02-10T12:00:00"
+      user_cart:
+        cart_info:
+          id: 0
+          created_at: "2026-02-10T12:00:00"
+        cart_books:
+          - book:
+              id: 00
+              title: "Book Title"
+              author: "Author Name"
+            quantity: 2
+
+  UserOrdersResponse:
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      user_orders:
+        type: array
+        items:
+          $ref: '#/definitions/OrderDetail'
+    example:
+      user:
+        id: 0
+        first_name: "user_first_name"
+        last_name: "user_last_name"
+        email: "user@email.com"
+        phone: "+12345678900"
+        created_at: "2026-02-10T12:00:00"
+      user_orders:
+        - order_info:
+            id: 0
+            status: "Shipped"
+            shipping_method: "Delivered"
+            subtotal: 00.0
+            tax: 0.0
+            shipping_cost: 0.0
+            total: 00.0
+            created_at: "2026-02-08T09:00:00"
+          order_books:
+            - book:
+                id: 00
+                title: "Book Title"
+                author: "Author Name"
+              quantity: 1
+
+# Book Definitions
+  BookDescriptionCreate:
+    type: object
+    properties:
+      title:
+        type: string
+        example: "Book Title"
+      subtitle:
+        type: string
+        example: "A Great Subtitle"
+      author:
+        type: string
+        example: "Author Name"
+      publisher:
+        type: string
+        example: "Publisher Name"
+      published_date:
+        type: string
+        format: date
+        example: "2025-01-01"
+      description:
+        type: string
+        example: "A detailed description of the book."
+      isbn:
+        type: string
+        example: "1234567890"
+      page_count:
+        type: integer
+        example: 350
+      image_link:
+        type: string
+        example: "https://example.com/image.jpg"
+      language:
+        type: string
+        example: "en"
+      price:
+        type: number
+        example: 29.99
+      stock_quantity:
+        type: integer
+        example: 20
+      averageRating:
+        type: number
+        example: 4.2
+      ratingsCount:
+        type: integer
+        example: 100
+    required:
+      - title
+      - subtitle
+      - author
+      - publisher
+      - published_date
+      - description
+      - isbn
+      - page_count
+      - image_link
+      - language
+      - price
+      - stock_quantity
+      - averageRating
+      - ratingsCount
+
+  BookDescription:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 10
+      title:
+        type: string
+        example: "Book Title"
+      subtitle:
+        type: string
+        example: "A Great Subtitle"
+      author:
+        type: string
+        example: "Author Name"
+      publisher:
+        type: string
+        example: "Publisher Name"
+      published_date:
+        type: string
+        format: date
+        example: "2025-01-01"
+      description:
+        type: string
+        example: "A detailed description of the book."
+      isbn:
+        type: string
+        example: "1234567890"
+      page_count:
+        type: integer
+        example: 350
+      image_link:
+        type: string
+        example: "https://example.com/image.jpg"
+      language:
+        type: string
+        example: "en"
+      price:
+        type: number
+        example: 29.99
+      stock_quantity:
+        type: integer
+        example: 20
+      averageRating:
+        type: number
+        example: 4.2
+      ratingsCount:
+        type: integer
+        example: 100
+
+  BookDescriptionWithCategories:
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/BookDescription'
+      categories:
+        type: array
+        items:
+          $ref: '#/definitions/Category'
+
+# Payment Definitions
+  PaymentCreate:
+    type: object
+    properties:
+      card_number:
+        type: string
+        example: "**** **** **** 1234"
+      cvv:
+        type: integer
+        example: 123
+      expiry_month:
+        type: integer
+        example: 12
+      expiry_year:
+        type: integer
+        example: 2030
+      is_default:
+        type: boolean
+        example: true
+    required:
+      - card_number
+      - cvv
+      - expiry_month
+      - expiry_year
+
+  Payment:
+    type: object
+    properties:
+      id: 
+        type: integer
+        example: 0
+      card_number:
+        type: string
+        example: "**** **** **** 1234"
+      expiry_month:
+        type: integer
+        example: 12
+      expiry_year:
+        type: integer
+        example: 2030
+      is_default:
+        type: boolean
+        example: true
+
+# Address Definitions
+  AddressCreate:
+    type: object
+    properties:
+      line1:
+        type: string
+        example: "123 Main St"
+      line2:
+        type: string
+        example: "Apt 4B"
+      number:
+        type: integer
+        example: 111
+      city:
+        type: string
+        example: "New York"
+      state:
+        type: string
+        example: "NY"
+      country:
+        type: string
+        example: "USA"
+      zipcode:
+        type: string
+        example: "10001"
+    required:
+      - line1
+      - city
+      - state
+      - country
+      - zipcode
+  
+  Address:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      line1:
+        type: string
+        example: "123 Main St"
+      line2:
+        type: string
+        example: "Apt 4B"
+      city:
+        type: string
+        example: "New York"
+      state:
+        type: string
+        example: "NY"
+      country:
+        type: string
+        example: "USA"
+      zipcode:
+        type: string
+        example: "10001"
+
+# Category Definitions
+  CategoryCreate:
+    type: object
+    properties:
+      title:
+        type: string
+        example: "Fiction"
+    required:
+      - title
+
+  Category:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      title:
+        type: string
+        example: "Fiction"
+
+# Review Definitions
+  ReviewCreate:
+    type: object
+    properties:
+      rating:
+        type: number
+        example: 4.5
+      comment:
+        type: string
+        example: "Great book!"
+    required:
+      - rating
+
+  Review:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      rating:
+        type: number
+        example: 4.5
+      comment:
+        type: string
+        example: "Great book!"
+      created_at:
+        type: string
+        format: date-time
+        example: "2026-02-09T10:00:00"
+
+# Favorite Definitions
+  Favorite:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      book:
+        $ref: '#/definitions/BookDescription'
+
+# Cart Definitions
+  Cart:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      created_at:
+        type: string
+        format: date-time
+        example: "2026-02-10T12:00:00"
+
+  CartDetail:
+    type: object
+    properties:
+      cart_info:
+        $ref: '#/definitions/Cart'
+      cart_books:
+        type: array
+        items:
+          $ref: '#/definitions/CartBookDetail'
+
+  CartBookDetail:
+    type: object
+    properties:
+      book:
+        $ref: '#/definitions/BookDescription'
+      quantity:
+        type: integer
+
+# Order Definitions
+  OrderCreate:
+    type: object
+    properties:
+      status:
+        type: string
+        example: "Pending"
+      shipping_method:
+        type: string
+        example: "InStore"
+      subtotal:
+        type: number
+        example: 50.0
+      tax:
+        type: number
+        example: 5.0
+      shipping_cost:
+        type: number
+        example: 2.0
+      total:
+        type: number
+        example: 57.0
+    required:
+      - status
+      - shipping_method
+      - subtotal
+      - tax
+      - shipping_cost
+      - total
+    example:
+      status: "Pending"
+      shipping_method: "InStore"
+      subtotal: 50.0
+      tax: 5.0
+      shipping_cost: 2.0
+      total: 57.0
+
+  Order:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 100
+      status:
+        type: string
+        example: "Shipped"
+      shipping_method:
+        type: string
+        example: "Delivered"
+      subtotal:
+        type: number
+        example: 50.0
+      tax:
+        type: number
+        example: 5.0
+      shipping_cost:
+        type: number
+        example: 2.0
+      total:
+        type: number
+        example: 57.0
+      created_at:
+        type: string
+        format: date-time
+        example: "2026-02-08T09:00:00"
+
+  OrderDetail:
+    type: object
+    properties:
+      order_info:
+        $ref: '#/definitions/Order'
+      order_books:
+        type: array
+        items:
+          $ref: '#/definitions/OrderBookDetail'
+
+  OrderBookDetail:
+    type: object
+    properties:
+      book:
+        $ref: '#/definitions/BookDescription'
+      quantity:
+        type: integer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+

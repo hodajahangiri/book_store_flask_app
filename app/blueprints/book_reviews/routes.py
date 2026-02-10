@@ -54,7 +54,7 @@ def update_review(review_id):
     user = db.session.get(Users, user_id)
     review = db.session.get(Reviews, review_id)
     if not review:
-        return jsonify({"error" : f"Payment not found."}), 404
+        return jsonify({"error" : f"Review not found."}), 404
     if not user:
         return jsonify({"error" : f"User not found."}), 404
     if review not in user.reviews:

@@ -17,7 +17,7 @@ SWAGGER_URL = '/api/docs'
 API_URL = '/static/swagger.yaml'
 
 #creating swagger blueprint
-swagger_blueprint = get_swaggerui_blueprint(SWAGGER_URL,API_URL, config={'app_name': 'Mechanic Shop'})
+swagger_blueprint = get_swaggerui_blueprint(SWAGGER_URL,API_URL, config={'app_name': 'Book Shop'})
 
 def create_app(config_name):
      # Initialize flask app
@@ -35,7 +35,7 @@ def create_app(config_name):
      # Register Blueprints
      app.register_blueprint(users_bp,url_prefix='/users')
      app.register_blueprint(book_descriptions_bp, url_prefix='/book_descriptions')
-     app.register_blueprint(payments_bp, url_prefix='/users/payments')
+     app.register_blueprint(payments_bp, url_prefix='/payments')
      app.register_blueprint(addresses_bp, url_prefix='/addresses')
      app.register_blueprint(categories_bp, url_prefix='/categories')
      app.register_blueprint(reviews_bp, url_prefix='/reviews')

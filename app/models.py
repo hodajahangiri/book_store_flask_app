@@ -16,7 +16,7 @@ db = SQLAlchemy(model_class=Base)
 user_addresses = Table(
     "user_addresses",
     Base.metadata,
-    Column("user_id", Integer, ForeignKey("users.id"), nullable=False),
+    Column("user_id", Integer, ForeignKey("users.id"), nullable=True),
     Column("address_id", Integer, ForeignKey("addresses.id"), nullable=False),
 )
 
@@ -72,7 +72,7 @@ class Payments(Base):
     __tablename__ = "payments"
 
     id : Mapped[int] = mapped_column(primary_key=True)
-    user_id : Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id : Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), nullable=True)
     card_number : Mapped[str] = mapped_column(String(20), nullable=False)
     cvv : Mapped[int] = mapped_column(Integer, nullable=False)
     expiry_month : Mapped[int] = mapped_column(Integer, nullable=False)
