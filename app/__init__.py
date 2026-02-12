@@ -29,7 +29,7 @@ def create_app(config_name):
      db.init_app(app)
      # Extensions     
      ma.init_app(app)
-     # Add CORS To let front access to the APIs
+     # Add CORS To let front access to the APIs --> allow all origins (for development)
      CORS(app)
 
      # Register Blueprints

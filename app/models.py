@@ -155,7 +155,7 @@ class Book_descriptions(Base):
     subtitle : Mapped[str] = mapped_column(String(500), nullable=False)
     author : Mapped[str] = mapped_column(String(200), nullable=False)
     publisher : Mapped[str] = mapped_column(String(200), nullable=False)
-    published_date : Mapped[date] = mapped_column(Date)
+    published_date : Mapped[str] = mapped_column(String(24),nullable=False)
     description : Mapped[str] = mapped_column(String(3500), nullable=False)
     isbn : Mapped[str] = mapped_column(String(15), nullable=False, unique=True)
     page_count : Mapped[int] = mapped_column(Integer, nullable=True, default=0)

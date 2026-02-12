@@ -48,6 +48,8 @@ def delete_book_description(book_id):
     book_description = db.session.get(Book_descriptions, book_id)
     if not book_description:
         return jsonify({"error" : f"Book with id: {book_id} not found."}), 404
+    if len(book_description.cart_books)>0 or len(book_description.order_books)>0:
+        return jsonify({"message" : f"You can not delete this description"}), 200
     db.session.delete(book_description)
     db.session.commit()
     return jsonify({"message" : f"Successfully deleted book_description with id: {book_id}"}), 200
