@@ -14,7 +14,7 @@ def add_book_description():
     # Check if book description exist
     existed_book = db.session.query(Book_descriptions).where(Book_descriptions.isbn == data["isbn"]).first()
     if existed_book:
-        return jsonify({"error" : f"This isbn is already associated with a book."}), 400
+        return book_description_schema.jsonify(existed_book), 201
     new_book = Book_descriptions(**data)
     db.session.add(new_book)
     db.session.commit()
