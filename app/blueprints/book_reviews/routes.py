@@ -1,4 +1,4 @@
-from .schemas import review_schema, reviews_schema
+from .schemas import review_schema, reviews_schema, review_users_schema
 from app.blueprints.book_reviews import reviews_bp
 from app.utils.auth import token_required
 from flask import request, jsonify
@@ -38,7 +38,7 @@ def get_reviews(book_description_id):
         return jsonify({"error" : f"Book not found."}), 404
     response = {
         "book_info" : book_description_schema.dump(book),
-        "reviews" : reviews_schema.dump(book.reviews)
+        "reviews" : review_users_schema.dump(book.reviews)
     }
     return jsonify(response), 200
 
@@ -46,6 +46,11 @@ def get_reviews(book_description_id):
 def get_all_reviews():
     reviews = db.session.query(Reviews).all()
     return reviews_schema.jsonify(reviews), 200
+
+@reviews_bp.route('/<int:review_id>')
+def get_review(review_id):
+    review = db.session.get(Reviews, review_id)
+    return reviews_schema.jsonify(review), 200
 
 @reviews_bp.route('<int:review_id>', methods={'PUT'})
 @token_required
