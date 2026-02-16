@@ -113,7 +113,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "https://www.googleapis.com/books/v1/volumes?q=Harry Potter Boxed Set+intitle:keyes&maxResults=20&orderBy=relevance&key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
+              "raw": "https://www.googleapis.com/books/v1/volumes?q=Harry Potter Boxed Set+intitle:keyes&maxResults=12&orderBy=relevance&key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
               "protocol": "https",
               "host": [
                 "www",
@@ -132,11 +132,51 @@
                 },
                 {
                   "key": "maxResults",
-                  "value": "20"
+                  "value": "12"
                 },
                 {
                   "key": "orderBy",
                   "value": "relevance"
+                },
+                {
+                  "key": "key",
+                  "value": "AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get 16 random Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://www.googleapis.com/books/v1/volumes?q=subject:fiction&startIndex=90&maxResults=10&key=AIzaSyCXoO56bUsXN9i0gF-0PAP8dV1ZtJaN2JM",
+              "protocol": "https",
+              "host": [
+                "www",
+                "googleapis",
+                "com"
+              ],
+              "path": [
+                "books",
+                "v1",
+                "volumes"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "subject:fiction"
+                },
+                {
+                  "key": "startIndex",
+                  "value": "90"
+                },
+                {
+                  "key": "maxResults",
+                  "value": "10"
                 },
                 {
                   "key": "key",
@@ -159,7 +199,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"email\" : \"user1@email.com\",\n    \"first_name\" : \"user_name1\",\n    \"last_name\": \"user_last_name1\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -245,7 +285,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NzEwMDksImV4cCI6MTc3MDc3NDYwOSwic3ViIjoiMiJ9.IAZhzvH4P3pxEzNryL7yivENSukqbNk9E_J87xxIClg",
                   "type": "string"
                 }
               ]
@@ -278,7 +318,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzAzNDAyMDEsImV4cCI6MTc3MDM0MzgwMSwic3ViIjoiMSJ9.r5EFOSf2hqohgOVczd8R_Zdzk_YlB17Pw4o-SkgfA7c",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NzA2OTIsImV4cCI6MTc3MDc3NDI5Miwic3ViIjoiMiJ9.Ii-gGWAmCqpZ8RPDcLjEKGsfxNp86A0HoSWzDITjuU0",
                   "type": "string"
                 }
               ]
@@ -310,7 +350,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzAzNDAyMDEsImV4cCI6MTc3MDM0MzgwMSwic3ViIjoiMSJ9.r5EFOSf2hqohgOVczd8R_Zdzk_YlB17Pw4o-SkgfA7c",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA2ODQ2OTEsImV4cCI6MTc3MDY4ODI5MSwic3ViIjoiMSJ9.6seuyvjB-zkvdinkSnT6S1QSEd9IiuyAiYK_7FJDt0Q",
                   "type": "string"
                 }
               ]
@@ -319,7 +359,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
+              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_change_name\",\n    \"last_name\": \"user_change_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -345,31 +385,19 @@
         },
         {
           "name": "Get user reviews",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MTQ0MjUsImV4cCI6MTc3MDUxODAyNSwic3ViIjoiMSJ9.zvf2xgd40B6LvpDJTiYqsprQTUpbez6aBPnSv3-YR3M",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA5NDk1MTQsImV4cCI6MTc3MDk1MzExNCwic3ViIjoiMSJ9.o7biVDuHBfzp47a61ybSN9iIsA63P2Gr04BAMPHGWCo",
                   "type": "string"
                 }
               ]
             },
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "http://127.0.0.1:5000/users/reviews",
               "protocol": "http",
@@ -399,7 +427,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MTU4OTYsImV4cCI6MTc3MDUxOTQ5Niwic3ViIjoiMSJ9.19n067iEVrA60kgdi4SCUm-wAl4FkAe611nZezgPGKw",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA5NzE3NjUsImV4cCI6MTc3MDk3NTM2NSwic3ViIjoiMSJ9.MnpWCogiFNjIon837dGjrll01ScBBBxfLyxBp76zAVE",
                   "type": "string"
                 }
               ]
@@ -441,7 +469,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjY0NDYsImV4cCI6MTc3MDUzMDA0Niwic3ViIjoiMSJ9.PIp6W0d10JQ-xXsKWl9ofOfPfLWdm8ceiLkvWglcjL4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA5NzE3NjUsImV4cCI6MTc3MDk3NTM2NSwic3ViIjoiMSJ9.MnpWCogiFNjIon837dGjrll01ScBBBxfLyxBp76zAVE",
                   "type": "string"
                 }
               ]
@@ -474,7 +502,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjY0NDYsImV4cCI6MTc3MDUzMDA0Niwic3ViIjoiMSJ9.PIp6W0d10JQ-xXsKWl9ofOfPfLWdm8ceiLkvWglcjL4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA4NjgwNzUsImV4cCI6MTc3MDg3MTY3NSwic3ViIjoiMSJ9.NDnXMKgjkcroQyms_pApsGgWZTXQS-QxqcG2WcB0VVs",
                   "type": "string"
                 }
               ]
@@ -511,7 +539,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"title\" : \"title1\",\n    \"subtitle\" : \"subtitle1\",\n    \"author\": \"author1\",\n    \"publisher\": \"publisher1\",\n    \"published_date\" : \"2005-11-15\",\n    \"description\": \"description1\",\n    \"isbn\": \"0000000001\",\n    \"image_link\": \"image_link1\",\n    \"language\": \"language1\",\n    \"averageRating\" : 0,\n    \"ratingsCount\" : 0,\n    \"page_count\" : 0\n}",
+              "raw": "{\n    \"title\" : \"The Wind in the Willows\",\n    \"subtitle\" : \"The Wind in the Willows\",\n    \"author\": \"Kenneth Grahame\",\n    \"publisher\": \"Standard Ebooks\",\n    \"published_date\" : \"2015-10-30T23:56:40Z\",\n    \"description\": \"The Wind in the Willows, the story of four animals and their adventures in the idyllic English countryside, started out as bedtime stories Grahame would tell his son. He eventually started writing them down, and finally produced this much-loved childrens classic. In continuous print since 1908, The Wind in the Willows has been illustrated countless times and adapted to stage, radio, and screen. This book is part of the Standard Ebooks project, which produces free public domain ebooks.\",\n    \"isbn\": \"jx0ZEAAAQBAJ\",\n    \"image_link\": \"https://books.google.com/books/content?id=jx0ZEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\",\n    \"language\": \"en\",\n    \"averageRating\" : 0,\n    \"ratingsCount\" : 5,\n    \"page_count\" : 194\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -577,7 +605,7 @@
               "raw": "{\n    \"title\" : \"The Google Story (2018 Updated Edition)\",\n    \"subtitle\" : \"Inside the Hottest Business, Media, and Technology Success of Our Time\",\n    \"author\": \"David A. Vise\",\n    \"publisher\": \"Random House Publishing Group\",\n    \"published_date\" : \"2005-11-15\",\n    \"description\": \"<b> <b>The definitive, bestselling account of the company that changed the way we work and live, updated for the twentieth anniversary of Google’s founding with analysis of its most recent bold moves to redefine the world—and its even more ambitious plans for the future.</b><br></b><br>Moscow-born Sergey Brin and Midwest-born Larry Page dropped out of graduate school at Stanford University to, as they said, “change the world” through a powerful search engine that would organize every bit of information on the Web for free. <i>The Google Story</i> takes you deep inside the company’s wild ride from an idea that struggled for funding in 1998 to a firm that today rakes in billions in profits. Based on scrupulous research and extraordinary access to Google, this fast-moving narrative reveals how an unorthodox management style and a culture of innovation enabled a search-engine giant to shake up Madison Avenue, clash with governments that accuse it of being a monopoly, deploy self-driving cars to forever change how we travel, and launch high-flying Internet balloons. Unafraid of controversy, Google is surging ahead with artificial intelligence that could cure diseases but also displace millions of people from their jobs, testing the founders’ guiding mantra: DON’T BE EVIL.<br><b><br>Praise for <i>The Google Story<br></i></b><i><br></i>“[The authors] do a fine job of recounting Google’s rapid rise and explaining its search business.”<b>—<i>The New York Times<br></i></b><br>“An intriguing insider view of the Google culture.”<b>—<i>Harvard Business Review<br></i></b><br>“An interesting read on a powerhouse company . . . If you haven’t read anything about one of today’s most influential companies, you should. If you don’t read <i>The Google Story,</i> you’re missing a few extra treats.”<b>—<i>USA Today<br></i></b><br>“Fascinating . . . meticulous . . . never bogs down.”<b>—<i>Houston Chronicle</i></b>\",\n    \"isbn\": \"9780440335702\",\n    \"page_count\": 384,\n    \"image_link\": \"http://books.google.com/books/content?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71Wy8UkMV9QNQSBm26kiP2wJMrp5elvy5Qdf-I5yIiZH8INOMMgnVBVhgAOeDDrn0AZbnVrxT_F83kK6nivL9xTvG5AYu1-9u92rB9r4jfS8gKRqOQulP9uJiXma1OCSAX31YLt&source=gbs_api\",\n    \"language\": \"en\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/book_descriptions/1",
+              "raw": "http://127.0.0.1:5000/book_descriptions/13",
               "protocol": "http",
               "host": [
                 "127",
@@ -588,7 +616,7 @@
               "port": "5000",
               "path": [
                 "book_descriptions",
-                "1"
+                "13"
               ]
             }
           },
@@ -632,7 +660,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/book_descriptions/3",
+              "raw": "http://127.0.0.1:5000/book_descriptions/1",
               "protocol": "http",
               "host": [
                 "127",
@@ -643,7 +671,7 @@
               "port": "5000",
               "path": [
                 "book_descriptions",
-                "3"
+                "1"
               ]
             }
           },
@@ -669,7 +697,7 @@
               "raw": "{\n  \"title\" : \"Computers / Information Technology\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/book_descriptions/1/add_category/2",
+              "raw": "http://127.0.0.1:5000/book_descriptions/2/add_category/2",
               "protocol": "http",
               "host": [
                 "127",
@@ -680,7 +708,7 @@
               "port": "5000",
               "path": [
                 "book_descriptions",
-                "1",
+                "2",
                 "add_category",
                 "2"
               ]
@@ -726,7 +754,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjE5NjMsImV4cCI6MTc3MDUyNTU2Mywic3ViIjoiMiJ9.ViZo_ZXljbbMDvh66KfHg2NJVq6J18hk2pNrdbONpxk",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3ODIzODIsImV4cCI6MTc3MDc4NTk4Miwic3ViIjoiMSJ9.j0vF5B51cGNXpYw8iTKOazTiUrJFI8wnVBKdjz-hop8",
                   "type": "string"
                 }
               ]
@@ -743,7 +771,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/users/payments",
+              "raw": "http://127.0.0.1:5000/payments",
               "protocol": "http",
               "host": [
                 "127",
@@ -753,7 +781,6 @@
               ],
               "port": "5000",
               "path": [
-                "users",
                 "payments"
               ]
             }
@@ -771,7 +798,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NTQ1MDQsImV4cCI6MTc3MDc1ODEwNCwic3ViIjoiMSJ9.HDFYcjRdspKJ7es-YeUIo2-PSdltc0UtOyHWkwcAz_I",
                   "type": "string"
                 }
               ]
@@ -788,7 +815,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/users/payments",
+              "raw": "http://127.0.0.1:5000/payments",
               "protocol": "http",
               "host": [
                 "127",
@@ -798,7 +825,6 @@
               ],
               "port": "5000",
               "path": [
-                "users",
                 "payments"
               ]
             }
@@ -814,7 +840,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/users/payments/all",
+              "raw": "http://127.0.0.1:5000/payments/all",
               "protocol": "http",
               "host": [
                 "127",
@@ -824,7 +850,6 @@
               ],
               "port": "5000",
               "path": [
-                "users",
                 "payments",
                 "all"
               ]
@@ -840,7 +865,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MDk5MTYsImV4cCI6MTc3MDQxMzUxNiwic3ViIjoiMSJ9.JLBE-2AzQ14904Wim4Pxk2-ipGlVABZpf0XnwBue3HQ",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NTMyNDEsImV4cCI6MTc3MDc1Njg0MSwic3ViIjoiMSJ9.cRTIhg3wf7GBLXMsvlR3x7myo9F3ljyzpwBKVOtNJFA",
                   "type": "string"
                 }
               ]
@@ -857,7 +882,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/users/payments/4",
+              "raw": "http://127.0.0.1:5000/payments/2",
               "protocol": "http",
               "host": [
                 "127",
@@ -867,9 +892,8 @@
               ],
               "port": "5000",
               "path": [
-                "users",
                 "payments",
-                "4"
+                "2"
               ]
             }
           },
@@ -883,7 +907,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MDk5MTYsImV4cCI6MTc3MDQxMzUxNiwic3ViIjoiMSJ9.JLBE-2AzQ14904Wim4Pxk2-ipGlVABZpf0XnwBue3HQ",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NTQ1MDQsImV4cCI6MTc3MDc1ODEwNCwic3ViIjoiMSJ9.HDFYcjRdspKJ7es-YeUIo2-PSdltc0UtOyHWkwcAz_I",
                   "type": "string"
                 }
               ]
@@ -900,7 +924,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/users/payments/4",
+              "raw": "http://127.0.0.1:5000/payments/1",
               "protocol": "http",
               "host": [
                 "127",
@@ -910,9 +934,8 @@
               ],
               "port": "5000",
               "path": [
-                "users",
                 "payments",
-                "4"
+                "1"
               ]
             }
           },
@@ -931,7 +954,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjE5NjMsImV4cCI6MTc3MDUyNTU2Mywic3ViIjoiMiJ9.ViZo_ZXljbbMDvh66KfHg2NJVq6J18hk2pNrdbONpxk",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3ODgwNDcsImV4cCI6MTc3MDc5MTY0Nywic3ViIjoiMSJ9.OXTG7ykqmT0_ma7qQskg52JjWXbKqt1fN9gfF_On7HM",
                   "type": "string"
                 }
               ]
@@ -940,7 +963,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"city\": \"city_3\",\n    \"country\": \"US\",\n    \"line1\": \"line1_3\",\n    \"line2\": \"\",\n    \"number\": 333,\n    \"state\": \"CA\",\n    \"zipcode\": \"333333\"\n}",
+              "raw": "{\n    \"city\": \"city3\",\n    \"country\": \"US\",\n    \"line1\": \"line1_3\",\n    \"line2\": \"\",\n    \"number\": null,\n    \"state\": \"CA\",\n    \"zipcode\": \"33333\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -975,7 +998,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NTQxMjAsImV4cCI6MTc3MDc1NzcyMCwic3ViIjoiMSJ9.BW8YxxpPR-NVlATqDso5oYSdAMLFpB7L1BA5QGmButo",
                   "type": "string"
                 }
               ]
@@ -1061,7 +1084,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MjYxNjksImV4cCI6MTc3MDQyOTc2OSwic3ViIjoiMSJ9.g4PCQHykmhyID4YUV2dB69nTe4GP42vezTa7zZ6ZLPY",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3ODgwNDcsImV4cCI6MTc3MDc5MTY0Nywic3ViIjoiMSJ9.OXTG7ykqmT0_ma7qQskg52JjWXbKqt1fN9gfF_On7HM",
                   "type": "string"
                 }
               ]
@@ -1096,31 +1119,22 @@
           "response": []
         },
         {
-          "name": "Update user address Copy",
+          "name": "Delete user address",
           "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzA0MjYsImV4cCI6MTc3MDQzNDAyNiwic3ViIjoiMSJ9.EvqNJ6W6kaP47xw0684-svLw8SmLc2wv2u1p-53EiO4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3OTIwOTEsImV4cCI6MTc3MDc5NTY5MSwic3ViIjoiMSJ9.3T124gVHZ77w3Ps4WKlriG10wfp1krl-rWIO4vFyxt8",
                   "type": "string"
                 }
               ]
             },
             "method": "DELETE",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"city\": \"Scot Valley\",\n    \"country\": \"US\",\n    \"line1\": \"Sugar Pine\",\n    \"line2\": \"\",\n    \"number\": 786,\n    \"state\": \"CA\",\n    \"zipcode\": \"95965\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "http://127.0.0.1:5000/addresses/7",
+              "raw": "http://127.0.0.1:5000/addresses/2",
               "protocol": "http",
               "host": [
                 "127",
@@ -1131,7 +1145,7 @@
               "port": "5000",
               "path": [
                 "addresses",
-                "7"
+                "2"
               ]
             }
           },
@@ -1159,7 +1173,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\" : \"title2\"\n}",
+              "raw": "{\n  \"title\" : \"title1\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1324,7 +1338,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzEyMTUwNzMsImV4cCI6MTc3MTIxODY3Mywic3ViIjoiMSJ9.slMoBMGdO-R9a0e-uSyqW_TAL8G_WDTjojnVJ5y-ULo",
                   "type": "string"
                 }
               ]
@@ -1341,7 +1355,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/reviews/2",
+              "raw": "http://127.0.0.1:5000/reviews/12",
               "protocol": "http",
               "host": [
                 "127",
@@ -1352,7 +1366,7 @@
               "port": "5000",
               "path": [
                 "reviews",
-                "2"
+                "12"
               ]
             }
           },
@@ -1364,7 +1378,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/reviews/book/2",
+              "raw": "http://127.0.0.1:5000/reviews/book/29",
               "protocol": "http",
               "host": [
                 "127",
@@ -1376,7 +1390,7 @@
               "path": [
                 "reviews",
                 "book",
-                "2"
+                "29"
               ]
             }
           },
@@ -1413,7 +1427,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzU0ODEsImV4cCI6MTc3MDQzOTA4MSwic3ViIjoiMiJ9.g5-PNJQ2aXLeysGhhXH1wj-3EKhZs5UK3qSzxIdhxbg",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA5NDk1MTQsImV4cCI6MTc3MDk1MzExNCwic3ViIjoiMSJ9.o7biVDuHBfzp47a61ybSN9iIsA63P2Gr04BAMPHGWCo",
                   "type": "string"
                 }
               ]
@@ -1430,7 +1444,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/reviews/5",
+              "raw": "http://127.0.0.1:5000/reviews/1",
               "protocol": "http",
               "host": [
                 "127",
@@ -1441,7 +1455,7 @@
               "port": "5000",
               "path": [
                 "reviews",
-                "5"
+                "1"
               ]
             }
           },
@@ -1455,7 +1469,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA0MzU0ODEsImV4cCI6MTc3MDQzOTA4MSwic3ViIjoiMiJ9.g5-PNJQ2aXLeysGhhXH1wj-3EKhZs5UK3qSzxIdhxbg",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA5NDk1MTQsImV4cCI6MTc3MDk1MzExNCwic3ViIjoiMSJ9.o7biVDuHBfzp47a61ybSN9iIsA63P2Gr04BAMPHGWCo",
                   "type": "string"
                 }
               ]
@@ -1463,7 +1477,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/reviews/3",
+              "raw": "http://127.0.0.1:5000/reviews/1",
               "protocol": "http",
               "host": [
                 "127",
@@ -1474,7 +1488,30 @@
               "port": "5000",
               "path": [
                 "reviews",
-                "3"
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get a specific review",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/reviews/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "reviews",
+                "1"
               ]
             }
           },
@@ -1493,7 +1530,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjEwNTcsImV4cCI6MTc3MDUyNDY1Nywic3ViIjoiMSJ9.mn7C0DiA0beW-MsA_rPGiMK5H8ZgB6un4zrtNx0Hp3k",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA4ODcyOTcsImV4cCI6MTc3MDg5MDg5Nywic3ViIjoiMSJ9.i94mI8LpybVIIK4I1v7bY8JNIOtOYWIydWVmkV118iQ",
                   "type": "string"
                 }
               ]
@@ -1584,6 +1621,39 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "toggle favorite",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA4ODcyOTcsImV4cCI6MTc3MDg5MDg5Nywic3ViIjoiMSJ9.i94mI8LpybVIIK4I1v7bY8JNIOtOYWIydWVmkV118iQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:5000/favorites/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "5000",
+              "path": [
+                "favorites",
+                "1"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -1592,26 +1662,19 @@
       "item": [
         {
           "name": "Get cart for user",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzEyMjc4MTIsImV4cCI6MTc3MTIzMTQxMiwic3ViIjoiMSJ9.755Vpfol9pq23wZVb0vpjnbIfIPXQb3gIy9iNZUHFx4",
                   "type": "string"
                 }
               ]
             },
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"email\" : \"user@email.com\",\n    \"first_name\" : \"user_name\",\n    \"last_name\": \"user_last_name\",\n    \"password\": \"12345\",\n    \"phone\" : \"+14089998877\"\n}"
-            },
             "url": {
               "raw": "http://127.0.0.1:5000/carts",
               "protocol": "http",
@@ -1637,7 +1700,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjY0NDYsImV4cCI6MTc3MDUzMDA0Niwic3ViIjoiMSJ9.PIp6W0d10JQ-xXsKWl9ofOfPfLWdm8ceiLkvWglcjL4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzEyMjc4MTIsImV4cCI6MTc3MTIzMTQxMiwic3ViIjoiMSJ9.755Vpfol9pq23wZVb0vpjnbIfIPXQb3gIy9iNZUHFx4",
                   "type": "string"
                 }
               ]
@@ -1645,7 +1708,7 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/carts/add_book/2",
+              "raw": "http://127.0.0.1:5000/carts/add_book/7",
               "protocol": "http",
               "host": [
                 "127",
@@ -1657,7 +1720,7 @@
               "path": [
                 "carts",
                 "add_book",
-                "2"
+                "7"
               ]
             }
           },
@@ -1671,7 +1734,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA3NjU2NTQsImV4cCI6MTc3MDc2OTI1NCwic3ViIjoiMSJ9.5I-aemxfwoAcriG0dzGF8zun8LHiBYA0U6mNa3-0-9g",
                   "type": "string"
                 }
               ]
@@ -1679,7 +1742,7 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "http://127.0.0.1:5000/carts/remove_book/1",
+              "raw": "http://127.0.0.1:5000/carts/remove_book/2",
               "protocol": "http",
               "host": [
                 "127",
@@ -1691,7 +1754,7 @@
               "path": [
                 "carts",
                 "remove_book",
-                "1"
+                "2"
               ]
             }
           },
@@ -1710,7 +1773,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzA1MjUzMDEsImV4cCI6MTc3MDUyODkwMSwic3ViIjoiMiJ9.ecfwOrnYtVx3irzPdX-xrs1sKv9l6OlAc7yOLkcoSx4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NzEyMjc4MTIsImV4cCI6MTc3MTIzMTQxMiwic3ViIjoiMSJ9.755Vpfol9pq23wZVb0vpjnbIfIPXQb3gIy9iNZUHFx4",
                   "type": "string"
                 }
               ]
@@ -1719,7 +1782,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"shipping_method\" : \"Delivered\",\n    \"subtotal\" : 0,\n    \"tax\" : 0,\n    \"shipping_cost\" : 0,\n    \"total\" : 0\n    }",
+              "raw": "{\n    \"shipping_method\": \"InStore\",\n    \"subtotal\" : 0,\n    \"tax\" : 0 ,\n    \"shipping_cost\" : 0,\n    \"total\" : 0\n    }",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1727,7 +1790,7 @@
               }
             },
             "url": {
-              "raw": "http://127.0.0.1:5000/orders/1/address/3/payment/3",
+              "raw": "http://127.0.0.1:5000/orders/3/address/1/payment/2",
               "protocol": "http",
               "host": [
                 "127",
@@ -1738,11 +1801,11 @@
               "port": "5000",
               "path": [
                 "orders",
-                "1",
-                "address",
                 "3",
+                "address",
+                "1",
                 "payment",
-                "3"
+                "2"
               ]
             }
           },
