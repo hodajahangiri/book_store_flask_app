@@ -1,6 +1,6 @@
 import unittest
 from app import create_app
-from app.models import db, Users, Payments
+from app.models import db, Users
 from werkzeug.security import generate_password_hash
 from app.utils.auth import encode_token
 
