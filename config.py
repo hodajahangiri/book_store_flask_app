@@ -7,7 +7,11 @@ class DevelopmentConfig:
     
 
 class TestingConfig:
-    pass
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///testing_book_store_app.db'
+    DEBUG = True
+    CACHE_TYPE = "SimpleCache"
+    CACHE_DEFAULT_TIMEOUT = 200
+    TESTING = True
 
 
 class ProductionConfig:
