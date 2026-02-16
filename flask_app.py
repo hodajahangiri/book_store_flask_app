@@ -13,4 +13,4 @@ with app.app_context():
     db.create_all()
 
 # Run the app
-app.run()
+# app.run()
