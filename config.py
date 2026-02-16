@@ -1,3 +1,4 @@
+import os
 class DevelopmentConfig:
     # set the database
     SQLALCHEMY_DATABASE_URI = 'sqlite:///book_store_app.db'
@@ -15,4 +16,5 @@ class TestingConfig:
 
 
 class ProductionConfig:
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///book_store_app.db'
+    CACHE_TYPE = "SimpleCache"

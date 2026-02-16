@@ -3,7 +3,8 @@ from app.models import db
 
 
 # Create app
-app = create_app('DevelopmentConfig')
+# app = create_app('DevelopmentConfig')
+app = create_app('ProductionConfig')
 
 # Allow flask to access configurations and db
 with app.app_context():
