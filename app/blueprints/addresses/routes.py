@@ -54,7 +54,6 @@ def get_all_addresses():
     addresses = db.session.query(Addresses).all()
     return addresses_schema.jsonify(addresses), 200
 
-
 @addresses_bp.route('<int:address_id>', methods={'PUT'})
 @token_required
 def update_address(address_id):
