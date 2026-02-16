@@ -50,7 +50,7 @@ def get_all_reviews():
 @reviews_bp.route('/<int:review_id>')
 def get_review(review_id):
     review = db.session.get(Reviews, review_id)
-    return reviews_schema.jsonify(review), 200
+    return review_schema.jsonify(review), 200
 
 @reviews_bp.route('<int:review_id>', methods={'PUT'})
 @token_required
