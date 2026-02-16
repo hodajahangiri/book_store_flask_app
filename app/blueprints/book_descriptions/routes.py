@@ -33,7 +33,7 @@ def update_book_description(book_id):
     try:
         book_description_data = book_description_schema.load(request.json)
     except ValidationError as e:
-        return jsonify({"error message" : e.messages}), 400
+        return jsonify({"error_message" : e.messages}), 400
     # Check the isbn admin wants to change not be repeated
     existing_isbn = db.session.query(Book_descriptions).where(Book_descriptions.isbn == book_description_data["isbn"], Book_descriptions.id != book_id).first()
     if existing_isbn:
@@ -86,9 +86,11 @@ def remove_category_from_book(book_id,category_id):
     
 @book_descriptions_bp.route('/<int:book_id>', methods={'GET'})
 def get_book_descriptions_info(book_id):
-    book_description = db.session.get(Book_descriptions,book_id)
+    book = db.session.get(Book_descriptions,book_id)
+    if not book:
+        return jsonify({"error" : f"Book description with id: {book_id} not found."}), 404
     response = {
-        "data" : book_description_schema.dump(book_description),
-        "categories" : categories_schema.dump(book_description.categories)
+        "data" : book_description_schema.dump(book),
+        "categories" : categories_schema.dump(book.categories)
     }
     return jsonify(response), 200
