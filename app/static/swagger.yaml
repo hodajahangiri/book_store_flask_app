@@ -4,9 +4,9 @@ info:
   description: "Used to manage the everyday functionalities of a Book Shop"
   version: "0.0.1"
 
-host: "127.0.0.1:5000"
+host: "book-store-flask-app.onrender.com"
 schemes:
-  - "http"
+  - "https"
 consumes:
   - "application/json"
 produce:
