@@ -1,4 +1,4 @@
-from .schemas import favorites_schema, book_favorites_schema
+from .schemas import book_favorites_schema
 from app.blueprints.favorites import favorites_bp
 from app.utils.auth import token_required
 from flask import request, jsonify
