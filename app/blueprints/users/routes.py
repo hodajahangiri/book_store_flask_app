@@ -9,7 +9,7 @@ from app.blueprints.carts.schemas import cart_schema
 from app.blueprints.book_descriptions.schemas import book_description_schema
 from flask import request, jsonify
 from marshmallow import ValidationError
-from app.models import db, Users
+from app.models import db, Users, user_addresses, Order_books, Cart_books, Payments, Orders, Carts, Reviews, Favorites
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.utils.auth import encode_token, token_required
 
@@ -80,6 +80,22 @@ def delete_user():
     user = db.session.get(Users, user_id)
     if not user:
         return jsonify({"error" : f"User not found."}), 404
+    db.session.query(user_addresses).where(user_addresses.c.user_id == user.id).delete()
+    if user.cart:
+        db.session.query(Cart_books).filter(Cart_books.cart_id == user.cart.id).delete()
+    for order in user.orders:
+        db.session.query(Order_books).where(Order_books.order_id == order.id).delete()
+    db.session.query(Reviews).where(Reviews.user_id == user.id).delete()
+    # delete user favorites
+    db.session.query(Favorites).where(Favorites.user_id == user.id).delete()
+    # delete user cart
+    db.session.query(Carts).where(Carts.user_id == user.id).delete()
+    # delete user orders
+    db.session.query(Orders).where(Orders.user_id == user.id).delete()
+    # delete user payments
+    db.session.query(Payments).where(Payments.user_id == user.id).delete()
+    db.session.commit()
+    # then delete user
     db.session.delete(user)
     db.session.commit()
     return jsonify({"message" : f"Successfully your account deleted."}), 200
