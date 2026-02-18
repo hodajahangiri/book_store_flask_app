@@ -84,20 +84,30 @@ def delete_user():
         for address in user.addresses:
             if address.order:
                 db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
+                db.session.commit()
             else:
                 db.session.delete(address)
+                db.session.commit()
     if user.cart:
         db.session.query(Cart_books).filter(Cart_books.cart_id == user.cart.id).delete()
+        db.session.commit()
         db.session.delete(user.cart)
+        db.session.commit()
 
     for order in user.orders:
         db.session.query(Order_books).filter(Order_books.order_id == order.id).delete()
+        db.session.commit()
 
     db.session.query(Reviews).filter(Reviews.user_id == user.id).delete()
+    db.session.commit()
     db.session.query(Favorites).filter(Favorites.user_id == user.id).delete()
+    db.session.commit()
     db.session.query(Payments).filter(Payments.user_id == user.id).delete()
+    db.session.commit()
     db.session.query(Orders).filter(Orders.user_id == user.id).delete()
+    db.session.commit()
     db.session.query(Carts).filter(Carts.user_id == user.id).delete()
+    db.session.commit()
 
     # Delete the user after all related objects are removed
     db.session.delete(user)
