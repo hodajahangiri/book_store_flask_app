@@ -80,25 +80,29 @@ def delete_user():
     user = db.session.get(Users, user_id)
     if not user:
         return jsonify({"error" : f"User not found."}), 404
-    db.session.query(user_addresses).where(user_addresses.c.user_id == user.id).delete()
+    if len(user.addresses) > 0:
+        for address in user.addresses:
+            if address.order:
+                db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
+            else:
+                db.session.delete(address)
     if user.cart:
         db.session.query(Cart_books).filter(Cart_books.cart_id == user.cart.id).delete()
+        db.session.delete(user.cart)
+
     for order in user.orders:
-        db.session.query(Order_books).where(Order_books.order_id == order.id).delete()
-    db.session.query(Reviews).where(Reviews.user_id == user.id).delete()
-    # delete user favorites
-    db.session.query(Favorites).where(Favorites.user_id == user.id).delete()
-    # delete user cart
-    db.session.query(Carts).where(Carts.user_id == user.id).delete()
-    # delete user orders
-    db.session.query(Orders).where(Orders.user_id == user.id).delete()
-    # delete user payments
-    db.session.query(Payments).where(Payments.user_id == user.id).delete()
-    db.session.commit()
-    # then delete user
+        db.session.query(Order_books).filter(Order_books.order_id == order.id).delete()
+
+    db.session.query(Reviews).filter(Reviews.user_id == user.id).delete()
+    db.session.query(Favorites).filter(Favorites.user_id == user.id).delete()
+    db.session.query(Payments).filter(Payments.user_id == user.id).delete()
+    db.session.query(Orders).filter(Orders.user_id == user.id).delete()
+    db.session.query(Carts).filter(Carts.user_id == user.id).delete()
+
+    # Delete the user after all related objects are removed
     db.session.delete(user)
     db.session.commit()
-    return jsonify({"message" : f"Successfully your account deleted."}), 200
+    return jsonify({"message": "Your account was successfully deleted."}), 200
 
 @users_bp.route('', methods=["PUT"])
 @token_required
