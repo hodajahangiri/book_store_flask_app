@@ -85,7 +85,7 @@ def delete_user():
             return jsonify({"error" : f"User not found."}), 404
         if len(user.addresses) > 0:
             for address in user.addresses:
-                if address.order:
+                if len(address.orders) > 0:
                     db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
                     db.session.commit()
                 else:
