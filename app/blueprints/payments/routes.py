@@ -6,6 +6,8 @@ from app.models import db, Users, Payments
 from .schemas import payment_schema, payments_schema
 from app.blueprints.users.schemas import users_schema
 
+import traceback
+
 @payments_bp.route('', methods={'POST'})
 @token_required
 def create_payment():
@@ -43,14 +45,19 @@ def get_all_payments():
 
 @payments_bp.route('/all_with_users')
 def get_all_payments_with_users():
-    payments = db.session.query(Payments).all()
-    response = [{
-        "users" : users_schema.dump(payment.users),
-        "address" : payment_schema.dump(peyment)
-    }
-     for payment in payments   
-    ]
-    return jsonify(response), 200
+    try:
+        payments = db.session.query(Payments).all()
+        response = [{
+            "users" : users_schema.dump(payment.users),
+            "address" : payment_schema.dump(peyment)
+        }
+        for payment in payments   
+        ]
+        return jsonify(response), 200
+    except Exception as e:
+        print("Error in delete_user:", e)
+        print(traceback.format_exc())
+        return jsonify({"error": "Internal server error", "details": str(e)}), 500
 
 
 @payments_bp.route('<int:payment_id>', methods={'PUT'})
