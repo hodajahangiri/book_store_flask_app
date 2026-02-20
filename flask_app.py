@@ -8,7 +8,7 @@ app = create_app('ProductionConfig')
 
 # Allow flask to access configurations and db
 with app.app_context():
-    # db.drop_all()
+    db.drop_all()
     # Create all tables from models
     db.create_all()
 

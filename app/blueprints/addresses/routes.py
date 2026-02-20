@@ -55,17 +55,6 @@ def get_all_addresses():
     addresses = db.session.query(Addresses).all()
     return addresses_schema.jsonify(addresses), 200
 
-@addresses_bp.route('/all_with_users')
-def get_all_addresses_with_users():
-    addresses = db.session.query(Addresses).all()
-    response = [{
-        "users" : users_schema.dump(address.users),
-        "address" : address_schema.dump(address)
-    }
-     for address in addresses   
-    ]
-    return jsonify(response), 200
-
 @addresses_bp.route('<int:address_id>', methods={'PUT'})
 @token_required
 def update_address(address_id):
