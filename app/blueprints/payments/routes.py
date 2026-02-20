@@ -49,7 +49,7 @@ def get_all_payments_with_users():
         payments = db.session.query(Payments).all()
         response = [{
             "users" : users_schema.dump(payment.users),
-            "address" : payment_schema.dump(peyment)
+            "address" : payment_schema.dump(payment)
         }
         for payment in payments   
         ]
