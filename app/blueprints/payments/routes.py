@@ -4,6 +4,7 @@ from flask import request, jsonify
 from marshmallow import ValidationError
 from app.models import db, Users, Payments
 from .schemas import payment_schema, payments_schema
+from app.blueprints.users.schemas import users_schema
 
 @payments_bp.route('', methods={'POST'})
 @token_required
@@ -38,7 +39,15 @@ def get_payments():
 @payments_bp.route('/all')
 def get_all_payments():
     payments = db.session.query(Payments).all()
-    return payments_schema.jsonify(payments), 200
+    response = [{
+        "users" : users_schema.dump(payment.users),
+        "address" : payment_schema.dump(peyment)
+    }
+     for payment in payments   
+    ]
+    # return addresses_schema.jsonify(addresses), 200
+    return jsonify(response), 200
+    # return payments_schema.jsonify(payments), 200
 
 
 @payments_bp.route('<int:payment_id>', methods={'PUT'})

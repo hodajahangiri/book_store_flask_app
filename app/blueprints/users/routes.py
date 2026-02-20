@@ -83,18 +83,9 @@ def delete_user():
         user = db.session.get(Users, user_id)
         if not user:
             return jsonify({"error" : f"User not found."}), 404
-        if len(user.addresses) > 0:
-            for address in user.addresses:
-                if len(address.orders) > 0:
-                    db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
-                    db.session.commit()
-                else:
-                    db.session.delete(address)
-                    db.session.commit()
         if user.cart:
             for item in user.cart.cart_books:
                 db.session.delete(item)
-            # db.session.query(Cart_books).filter(Cart_books.cart_id == user.cart.id).delete()
             db.session.commit()
             db.session.delete(user.cart)
             db.session.commit()
@@ -105,8 +96,6 @@ def delete_user():
                 db.session.commit()
                 db.session.delete(order)
                 db.session.commit()
-                # db.session.query(Order_books).filter(Order_books.order_id == order.id).delete()
-            # db.session.commit()
         if len(user.reviews) > 0:
             db.session.query(Reviews).filter(Reviews.user_id == user.id).delete()
             db.session.commit()
@@ -116,10 +105,14 @@ def delete_user():
         if len(user.payments) > 0 :
             db.session.query(Payments).filter(Payments.user_id == user.id).delete()
             db.session.commit()
-        # db.session.query(Orders).filter(Orders.user_id == user.id).delete()
-        # db.session.commit()
-        # db.session.query(Carts).filter(Carts.user_id == user.id).delete()
-        # db.session.commit()
+        if len(user.addresses) > 0:
+            for address in user.addresses:
+                if len(address.orders) > 0:
+                    db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
+                    db.session.commit()
+                else:
+                    db.session.delete(address)
+                    db.session.commit()
 
         # Delete the user after all related objects are removed
         db.session.delete(user)
