@@ -39,15 +39,18 @@ def get_payments():
 @payments_bp.route('/all')
 def get_all_payments():
     payments = db.session.query(Payments).all()
+    return payments_schema.jsonify(payments), 200
+
+@payments_bp.route('/all_with_users')
+def get_all_payments_with_users():
+    payments = db.session.query(Payments).all()
     response = [{
         "users" : users_schema.dump(payment.users),
         "address" : payment_schema.dump(peyment)
     }
      for payment in payments   
     ]
-    # return addresses_schema.jsonify(addresses), 200
     return jsonify(response), 200
-    # return payments_schema.jsonify(payments), 200
 
 
 @payments_bp.route('<int:payment_id>', methods={'PUT'})
