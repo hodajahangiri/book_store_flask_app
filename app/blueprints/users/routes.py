@@ -13,6 +13,8 @@ from app.models import db, Users, user_addresses, Order_books, Cart_books, Payme
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.utils.auth import encode_token, token_required
 
+import traceback
+
 
 # Create a User 
 @users_bp.route('', methods={'POST'})
@@ -76,43 +78,57 @@ def get_user():
 @users_bp.route('', methods={'DELETE'})
 @token_required
 def delete_user():
-    user_id = request.user_id
-    user = db.session.get(Users, user_id)
-    if not user:
-        return jsonify({"error" : f"User not found."}), 404
-    if len(user.addresses) > 0:
-        for address in user.addresses:
-            if address.order:
-                db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
+    try:
+        user_id = request.user_id
+        user = db.session.get(Users, user_id)
+        if not user:
+            return jsonify({"error" : f"User not found."}), 404
+        if len(user.addresses) > 0:
+            for address in user.addresses:
+                if address.order:
+                    db.session.query(user_addresses).filter(user_addresses.c.user_id == user.id).delete()
+                    db.session.commit()
+                else:
+                    db.session.delete(address)
+                    db.session.commit()
+        if user.cart:
+            for item in user.cart.cart_books:
+                db.session.delete(item)
+            # db.session.query(Cart_books).filter(Cart_books.cart_id == user.cart.id).delete()
+            db.session.commit()
+            db.session.delete(user.cart)
+            db.session.commit()
+        if len(user.orders) > 0:
+            for order in user.orders:
+                for item in order.order_books:
+                    db.session.delete(item)
                 db.session.commit()
-            else:
-                db.session.delete(address)
+                db.session.delete(order)
                 db.session.commit()
-    if user.cart:
-        db.session.query(Cart_books).filter(Cart_books.cart_id == user.cart.id).delete()
-        db.session.commit()
-        db.session.delete(user.cart)
-        db.session.commit()
+                # db.session.query(Order_books).filter(Order_books.order_id == order.id).delete()
+            # db.session.commit()
+        if len(user.reviews) > 0:
+            db.session.query(Reviews).filter(Reviews.user_id == user.id).delete()
+            db.session.commit()
+        if len(user.favorites) > 0 :
+            db.session.query(Favorites).filter(Favorites.user_id == user.id).delete()
+            db.session.commit()
+        if len(user.payments) > 0 :
+            db.session.query(Payments).filter(Payments.user_id == user.id).delete()
+            db.session.commit()
+        # db.session.query(Orders).filter(Orders.user_id == user.id).delete()
+        # db.session.commit()
+        # db.session.query(Carts).filter(Carts.user_id == user.id).delete()
+        # db.session.commit()
 
-    for order in user.orders:
-        db.session.query(Order_books).filter(Order_books.order_id == order.id).delete()
+        # Delete the user after all related objects are removed
+        db.session.delete(user)
         db.session.commit()
-
-    db.session.query(Reviews).filter(Reviews.user_id == user.id).delete()
-    db.session.commit()
-    db.session.query(Favorites).filter(Favorites.user_id == user.id).delete()
-    db.session.commit()
-    db.session.query(Payments).filter(Payments.user_id == user.id).delete()
-    db.session.commit()
-    db.session.query(Orders).filter(Orders.user_id == user.id).delete()
-    db.session.commit()
-    db.session.query(Carts).filter(Carts.user_id == user.id).delete()
-    db.session.commit()
-
-    # Delete the user after all related objects are removed
-    db.session.delete(user)
-    db.session.commit()
-    return jsonify({"message": "Your account was successfully deleted."}), 200
+        return jsonify({"message": "Your account was successfully deleted."}), 200
+    except Exception as e:
+        print("Error in delete_user:", e)
+        print(traceback.format_exc())
+        return jsonify({"error": "Internal server error", "details": str(e)}), 500
 
 @users_bp.route('', methods=["PUT"])
 @token_required
